@@ -16,26 +16,13 @@ using System.Windows.Shapes;
 namespace Pizza
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for SignIn.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class SignIn : UserControl
     {
-        public Login()
+        public SignIn()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("yes");
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            emailTXTB.Clear();
-            pswB.Clear();
         }
     }
 }
