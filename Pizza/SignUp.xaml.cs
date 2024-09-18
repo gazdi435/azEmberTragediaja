@@ -24,5 +24,16 @@ namespace Pizza
         {
             InitializeComponent();
         }
+
+        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("yes");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            emailTXTB.Clear();
+            pswB.Clear();
+        }
     }
 }

@@ -14,15 +14,18 @@
 
         <Label Content="Sign In Page"/>
         <StackPanel Grid.Row="1">
-            <Label Content="Regisztráció" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40"/>
-            <Label Content="Név"/>
-            <Label Content="Email cím:" HorizontalAlignment="Center"/>
-            <TextBox x:Name="emailTXTB" Width="150" Margin="0 5 0 20"/>
-            <Label Content="Szállítási cím"/>
-            <Label Content="Te le fonszám"/>
+            <Label Content="Regisztráció" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 20"/>
+            <Label Content="Név" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+            <TextBox Name="nameTXTB" Width="150"/>
+            <Label Content="Email cím:" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            <TextBox x:Name="emailTXTB" Width="150"/>
+            <Label Content="Szállítási cím" Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            <TextBox Name="addressTXTB" Width="150" />
+            <Label Content="Te le fonszám" Grid.Row="1" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            <TextBox Name="phoneTXTB" Width="150" />
 
-            <Label Content="Jelszó:" HorizontalAlignment="Center"/>
-            <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 40"/>
+            <Label Content="Jelszó:" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 20"/>
 
             <Button Content="Bejelentkezés" Width="100" Click="Button_Click_1"/>
 
