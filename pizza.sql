@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Sze 18. 22:34
+-- Létrehozás ideje: 2024. Sze 18. 23:14
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -124,6 +124,30 @@ INSERT INTO `orderitems` (`OrderItemID`, `OrderID`, `PizzaID`, `Quantity`, `Size
 (4, 2, 4, 2, '32'),
 (5, 3, 5, 3, '45'),
 (6, 3, 6, 2, '32');
+
+--
+-- Eseményindítók `orderitems`
+--
+DELIMITER $$
+CREATE TRIGGER `update_ingredients_after_orderitem` AFTER INSERT ON `orderitems` FOR EACH ROW BEGIN
+    DECLARE scalingFactor DECIMAL(3,2);
+
+    SET scalingFactor = CASE 
+        WHEN NEW.Size = '24' THEN 1.0 
+        WHEN NEW.Size = '32' THEN 1.5
+        WHEN NEW.Size = '45' THEN 2.0
+        ELSE 1.0
+    END;
+
+    UPDATE ingredients i
+    JOIN toppings t ON i.IngredientID = t.IngredientID
+    JOIN pizzas p ON t.PizzaID = p.PizzaID
+    JOIN orderitems oi ON oi.PizzaID = p.PizzaID
+    SET i.Quantity = i.Quantity - (t.Quantity * NEW.Quantity * scalingFactor)
+    WHERE oi.OrderItemID = NEW.OrderItemID;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
