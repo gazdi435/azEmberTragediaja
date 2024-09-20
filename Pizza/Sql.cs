@@ -96,6 +96,43 @@ namespace Pizza
             return ingredients;
         }
 
+        public static int CreateOrder()
+        {
+            MySqlCommand cmd = new("INSERT INTO orders (UserID, OrderDate, Status) VALUES (@user, now(), 'Baking')");
+            cmd.Parameters.AddWithValue("user", 1); //TODO
+
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(cmd.LastInsertedId);
+            }
+        }
+
+        public static void AddOrderItems(int orderId, Dictionary<int, int> pizzas)
+        {
+            MySqlCommand cmd = new("INSERT INTO orderitems (OrderID, PizzaID, Quantity, Size) VALUES (@order, @pizza, @qty, @size)");
+            cmd.Parameters.AddWithValue("order", orderId);
+            cmd.Parameters.Add("pizza", MySqlDbType.Int32);
+            cmd.Parameters.Add("qty", MySqlDbType.Int32);
+            cmd.Parameters.Add("size", MySqlDbType.String);
+
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+
+                foreach (var item in pizzas)
+                {
+                    cmd.Parameters["pizza"].Value = item.Key;
+                    cmd.Parameters["qty"].Value = item.Value;
+                    cmd.Parameters["size"].Value = "24"; //TODO
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static bool EmailExists(string email)
         {
             bool res;
