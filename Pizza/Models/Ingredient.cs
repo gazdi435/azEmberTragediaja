@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pizza.Models
 {
-    public class Ingredient
+    internal class Ingredient
     {
         public int ID { get; private set; }
         public string Name { get; private set; }
