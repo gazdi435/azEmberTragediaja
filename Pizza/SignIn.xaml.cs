@@ -12,24 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
+using MySqlConnector;
 
 namespace Pizza
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for SignIn.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class SignIn : UserControl
     {
-        public Login()
+        public string name;
+
+        public SignIn()
         {
             InitializeComponent();
         }
 
-        
-
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new SignIn();
+            MainWindow.mainWindow.Login = new Login();
             MainWindow.mainWindow.RefreshUI();
         }
 
@@ -39,8 +42,7 @@ namespace Pizza
 
             emailTXTB.Clear();
             pswB.Clear();
-
-
+            MessageBox.Show("Köszönjük");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,16 +17,18 @@ namespace Pizza
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ContentControl Login { get; set; } = new UserPage();
+        public ContentControl Login { get; set; } = new Login();
+        public static MainWindow mainWindow;
 
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = this;
+            mainWindow = this;
         }
 
-        private void RefreshUI()
+        public void RefreshUI()
         {
             DataContext = null;
             DataContext = this;
