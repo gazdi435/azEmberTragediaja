@@ -16,7 +16,7 @@ namespace Pizza
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ContentControl Login { get; set; } = new Login();
+        public ContentControl Login { get; set; } = new UserPage();
 
         public MainWindow()
         {
