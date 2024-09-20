@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pizza"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
+    <Grid>
         <ContentControl Content="{Binding Login}"/>
-    </StackPanel>
+    </Grid>
 </Window>
