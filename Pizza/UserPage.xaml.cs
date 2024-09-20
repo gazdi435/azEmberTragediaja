@@ -98,6 +98,15 @@ namespace Pizza
                 cart.RemoveAt(lbCart.SelectedIndex);
             }
         }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (cart.Count == 0)
+            {
+                MessageBox.Show("Adj hozzá legalább 1 pizzát a kosárhoz!");
+                return;
+            }
+        }
     }
 
     public class CartItem(PizzaItem pizza, int amount)
