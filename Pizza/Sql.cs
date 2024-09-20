@@ -72,5 +72,41 @@ namespace Pizza
 
             return ingredients;
         }
+
+        public static bool EmailExists(string email)
+        {
+            bool res;
+            MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email");
+            cmd.Parameters.AddWithValue("email", email);
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    res = reader.Read();
+                }
+            }
+
+            return res;
+        }
+        public static bool EmailPasswordValid(string email, string password)
+        {
+            bool res;
+            MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email AND Password = @password");
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("password", password);
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    res = reader.Read();
+                }
+            }
+
+            return res;
+        }
     }
 }
