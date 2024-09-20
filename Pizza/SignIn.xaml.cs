@@ -29,13 +29,15 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("yes");
+            MainWindow.mainWindow.Login = new Login();
+            MainWindow.mainWindow.RefreshUI();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             emailTXTB.Clear();
             pswB.Clear();
+            MessageBox.Show("Köszönjük");
         }
     }
 }

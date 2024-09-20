@@ -7,24 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
     <Grid Width="800" Height="450">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="9*"/>
-        </Grid.RowDefinitions>
+      
         
-        <Label Content="Login Page"/>
-        <StackPanel Grid.Row="1">
-            <Label Content="Bejelentkezés" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40"/>
-            <Label Content="Email cím:" HorizontalAlignment="Center"/>
+        <StackPanel >
+            <Label Content="Bejelentkezés"  FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40" />
+            <Label Content="Email cím:" HorizontalAlignment="Center" FontWeight="Bold"/>
             <TextBox x:Name="emailTXTB" Width="150" Margin="0 5 0 20"/>
-            
-            <Label Content="Jelszó:" HorizontalAlignment="Center"/>
+
+            <Label Content="Jelszó:" HorizontalAlignment="Center" FontWeight="Bold"/>
             <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 40"/>
 
             <Button Content="Bejelentkezés" Width="100" Click="Button_Click_1"/>
 
 
-            <TextBlock FontSize="10" Margin="0 20" HorizontalAlignment="Center" Foreground="Blue" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown">
+            <TextBlock FontSize="10" Margin="0 20" HorizontalAlignment="Center" Foreground="Blue" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" FontStyle="Italic">
                 Még nincsen fiókod? Regisztrálj!
             </TextBlock>
         </StackPanel>
