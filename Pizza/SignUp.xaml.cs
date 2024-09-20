@@ -20,6 +20,8 @@ namespace Pizza
     /// </summary>
     public partial class SignIn : UserControl
     {
+        public string name;
+
         public SignIn()
         {
             InitializeComponent();
