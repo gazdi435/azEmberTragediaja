@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 
 namespace Pizza
 {
-    internal class Sql
+    internal static class Sql
     {
-        private readonly string conStr;
+        public static string conStr = "server=127.0.0.1;uid=root;pwd=;database=pizza";
 
-        public Sql(string conectionString)
-        {
-            conStr = conectionString;
-        }
-
-        public User GetUserByID(int id)
+        public static User GetUserByID(int id)
         {
             User user;
             MySqlCommand cmd = new("SELECT * FROM users WHERE UserID =@id");
@@ -36,7 +31,7 @@ namespace Pizza
 
             return user;
         }
-        public List<PizzaItem> GetPizzas()
+        public static List<PizzaItem> GetPizzas()
         {
             List <PizzaItem> pizzas = new();
             MySqlCommand cmd = new("SELECT * FROM pizzas");
@@ -56,7 +51,7 @@ namespace Pizza
 
             return pizzas;
         }
-        public List<Ingredient> GetIngredients()
+        public static List<Ingredient> GetIngredients()
         {
             List<Ingredient> ingredients = new();
             MySqlCommand cmd = new("SELECT * FROM ingredients");
