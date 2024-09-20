@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,23 @@ namespace Pizza
 {
     public class Ingredient
     {
-        int id;
-        string name;
+        public int ID { get; private set; }
+        public string Name { get; private set; }
+        public int Quantity { get; private set; }
 
-        public Ingredient(int id, string name)
+        public Ingredient(MySqlDataReader reader)
         {
-            this.id = id;
-            this.name = name;
+            ID = reader.GetInt32("IngredientID");
+            Name = reader.GetString("Name");
+            Quantity = reader.GetInt32("Quantity");
         }
 
-        public int Id => id;
-        public string Name => name;
+        public Ingredient(int id, string name, int quantity=0)
+        {
+            ID = id;
+            Name = name;
+            Quantity = quantity;
+        }
 
         public static List<Ingredient> GetIngredients()
         {
@@ -28,7 +35,7 @@ namespace Pizza
 
         public override string ToString()
         {
-            return name;
+            return Name;
         }
     }
 }
