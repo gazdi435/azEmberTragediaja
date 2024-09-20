@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pizza.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Pizza
         {
             InitializeComponent();
 
-            pizzas = PizzaItem.GetPizzas();
+            pizzas = Sql.GetPizzas();
 
             lbFood.ItemsSource = pizzas;
             lbCart.ItemsSource = cart;
@@ -46,7 +47,7 @@ namespace Pizza
 
             lblSelectedFood.Content = selectedPizza.Name;
             tbkDescription.Text = selectedPizza.Description;
-            dgIngredients.ItemsSource = selectedPizza.GetIngredients();
+            dgIngredients.ItemsSource = Sql.GetPizzaIngredients(selectedPizza.ID);
 
             dgIngredients.Columns[0].Header = "Alapanyag";
             dgIngredients.Columns[1].Header = "Darab";
@@ -106,6 +107,21 @@ namespace Pizza
                 MessageBox.Show("Adj hozzá legalább 1 pizzát a kosárhoz!");
                 return;
             }
+
+            List<PizzaItem> flatOrder = [];
+            foreach (var item in cart)
+            {
+                flatOrder.AddRange(Enumerable.Repeat(item.Pizza, item.Amount));
+            }
+
+            bool result = Order.PlaceOrder(flatOrder);
+            if (!result)
+            {
+                MessageBox.Show("A rendelés nem teljesíthető, mert nincs elég alapanyag.");
+                return;
+            }
+
+            MessageBox.Show("Rendelés leadva");
         }
     }
 
