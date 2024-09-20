@@ -46,7 +46,7 @@ namespace Pizza
                     {
                         pizzas.Add(new(reader));
                     }
-                }
+                }   
             }
 
             return pizzas;
