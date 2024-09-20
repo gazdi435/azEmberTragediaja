@@ -27,12 +27,6 @@ namespace Pizza.Models
             Quantity = quantity;
         }
 
-        public static List<Ingredient> GetIngredients()
-        {
-            // TEMP
-            return [new Ingredient(1, "Ingredient 1"), new Ingredient(2, "Ingredient 2"), new Ingredient(3, "Ingredient 3")];
-        }
-
         public override string ToString()
         {
             return Name;

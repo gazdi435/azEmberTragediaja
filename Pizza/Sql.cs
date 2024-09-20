@@ -73,6 +73,29 @@ namespace Pizza
             return ingredients;
         }
 
+        public static Dictionary<Ingredient, int> GetPizzaIngredients(int pizzaId)
+        {
+            Dictionary<Ingredient, int> ingredients = [];
+            MySqlCommand cmd = new("SELECT ingredients.IngredientID, ingredients.Name, ingredients.Quantity, toppings.Quantity as 'ToppingQuantity' FROM pizzas JOIN toppings ON pizzas.PizzaID = toppings.PizzaID JOIN ingredients ON ingredients.IngredientID = toppings.ToppingID WHERE pizzas.PizzaID = @id;");
+            cmd.Parameters.AddWithValue("id", pizzaId);
+
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Ingredient ingredient = new(reader);
+                        ingredients[ingredient] = reader.GetInt32("ToppingQuantity");
+                    }
+                }
+            }
+
+            return ingredients;
+        }
+
         public static bool EmailExists(string email)
         {
             bool res;
