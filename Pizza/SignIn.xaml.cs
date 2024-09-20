@@ -38,19 +38,7 @@ namespace Pizza
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string connectionString;
-            MySqlConnection cnn;
-
-            connectionString = "datascource=127.0.0.1; port=3306; database=pizza; username=root;password=;";
-
-            cnn = new MySqlConnection(connectionString);
-
-            cnn.Open();
-
-            string lekerdezes = $"SELECT count() FROM users WHERE Email=\"{emailTXTB.Text}\" and";
-
-
-            cnn.Close();
+            
 
             emailTXTB.Clear();
             pswB.Clear();
