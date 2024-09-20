@@ -30,7 +30,7 @@ namespace Pizza
         private void lbFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lblSelectedFood.Content = lbFood.SelectedItem.ToString();
-
+            tbkDescription.Text = $"asd asd ad asd ad sadad sda dasd sada da d adasds d adasda adasdas dd fsd fsd fsd fasf dsfdssd  fsdfsd fsdfdsfd";
             dgIngredients.ItemsSource = new List<IngredientView>([new("test", 2), new("asdasd", 3), new("dfsdff", 1)]);
         }
     }

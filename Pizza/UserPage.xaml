@@ -28,6 +28,7 @@
               Margin="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
@@ -41,16 +42,21 @@
                     FontSize="32"
                     FontWeight="Bold"
                     Content="Placeholder"/>
+            <TextBlock x:Name="tbkDescription"
+                       Text="asdadadad"
+                       TextWrapping="Wrap"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"/>
             <DataGrid x:Name="dgIngredients"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       Grid.ColumnSpan="2"
                       Margin="0 8"/>
             <TextBox x:Name="tbCartAmount"
-                     Grid.Row="2"
+                     Grid.Row="3"
                      Margin="0 0 4 0"
                      Text="1"/>
             <Button x:Name="btnAddToCart"
-                    Grid.Row="2"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Margin="4 0 0 0">Kosárhoz adás</Button>
         </Grid>
