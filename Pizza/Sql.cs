@@ -31,6 +31,7 @@ namespace Pizza
 
             return user;
         }
+
         public static List<PizzaItem> GetPizzas()
         {
             List <PizzaItem> pizzas = new();
@@ -71,26 +72,64 @@ namespace Pizza
 
             return ingredients;
         }
-        //public List<T> GetAllFrom<T>(string table)
-        //{
-        //    List<T> items = new();
-        //    MySqlCommand cmd = new("SELECT * FROM @table");
-        //    cmd.Parameters.AddWithValue("table", table);
 
-        //    using (MySqlConnection con = new(conStr))
-        //    {
-        //        cmd.Connection = con;
-        //        con.Open();
-        //        using (MySqlDataReader reader = cmd.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                items.Add(new(reader));
-        //            }
-        //        }
-        //    }
+        public static Dictionary<Ingredient, int> GetPizzaIngredients(int pizzaId)
+        {
+            Dictionary<Ingredient, int> ingredients = [];
+            MySqlCommand cmd = new("SELECT ingredients.IngredientID, ingredients.Name, ingredients.Quantity, toppings.Quantity as 'ToppingQuantity' FROM pizzas JOIN toppings ON pizzas.PizzaID = toppings.PizzaID JOIN ingredients ON ingredients.IngredientID = toppings.ToppingID WHERE pizzas.PizzaID = @id;");
+            cmd.Parameters.AddWithValue("id", pizzaId);
 
-        //    return items;
-        //}
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Ingredient ingredient = new(reader);
+                        ingredients[ingredient] = reader.GetInt32("ToppingQuantity");
+                    }
+                }
+            }
+
+            return ingredients;
+        }
+
+        public static bool EmailExists(string email)
+        {
+            bool res;
+            MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email");
+            cmd.Parameters.AddWithValue("email", email);
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    res = reader.Read();
+                }
+            }
+
+            return res;
+        }
+        public static bool EmailPasswordValid(string email, string password)
+        {
+            bool res;
+            MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email AND Password = @password");
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("password", password);
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    res = reader.Read();
+                }
+            }
+
+            return res;
+        }
     }
 }

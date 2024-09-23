@@ -90,11 +90,13 @@
                      Margin="0 16 0 0"/>
             <Button x:Name="btnRemoveCart"
                     Grid.Row="2"
-                    Margin="0 8" Click="btnRemoveCart_Click">
+                    Margin="0 8"
+                    Click="btnRemoveCart_Click">
                 Eltávolítás
             </Button>
             <Button x:Name="btnOrder"
-                    Grid.Row="3">Rendelés</Button>
+                    Grid.Row="3"
+                    Click="btnOrder_Click">Rendelés</Button>
         </Grid>
     </Grid>
 </UserControl>

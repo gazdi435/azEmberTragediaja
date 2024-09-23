@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pizza.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,15 @@ namespace Pizza
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
+            {
+                MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("No");
+            }
+
 
             emailTXTB.Clear();
             pswB.Clear();
