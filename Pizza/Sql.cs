@@ -85,7 +85,7 @@ internal static class Sql
     public static Dictionary<Ingredient, int> GetPizzaIngredients(int pizzaId)
     {
         Dictionary<Ingredient, int> ingredients = [];
-        MySqlCommand cmd = new("SELECT ingredients.ID, ingredients.Name, ingredients.Quantity, toppings.Quantity as 'ToppingQuantity' FROM pizzas JOIN toppings ON pizzas.ID = toppings.PizzaID JOIN ingredients ON ingredients.IngredientID = toppings.IngredientID WHERE pizzas.ID = @id;");
+        MySqlCommand cmd = new("SELECT ingredients.ID, ingredients.Name, ingredients.Quantity, toppings.Quantity as 'ToppingQuantity' FROM pizzas JOIN toppings ON pizzas.ID = toppings.PizzaID JOIN ingredients ON ingredients.ID = toppings.IngredientID WHERE pizzas.ID = @id;");
         cmd.Parameters.AddWithValue("id", pizzaId);
 
         using(MySqlConnection con = new(conStr))
