@@ -24,6 +24,7 @@ namespace Pizza.Models
         public static bool PlaceOrder(List<PizzaItem> pizzas)
         {
             Dictionary<int, int> totalIngredients = [];
+            Dictionary<int, int> orderItems = [];
             foreach (PizzaItem pizza in pizzas)
             {
                 Dictionary<Ingredient, int> ingredients = Sql.GetPizzaIngredients(pizza.ID);
@@ -31,6 +32,8 @@ namespace Pizza.Models
                 {
                     totalIngredients[item.Key.ID] = totalIngredients.GetValueOrDefault(item.Key.ID, 0) + item.Value;
                 }
+
+                orderItems[pizza.ID] = orderItems.GetValueOrDefault(pizza.ID, 0) + 1;
             }
 
             List<Ingredient> allIngredients = Sql.GetIngredients();
@@ -40,7 +43,9 @@ namespace Pizza.Models
                 return false;
             }
 
-            //TODO: SAVE ORDER
+            int orderId = Sql.CreateOrder();
+            Sql.AddOrderItems(orderId, orderItems);
+            Sql.DecreaseIngredients(totalIngredients);
 
             return true;
         }
