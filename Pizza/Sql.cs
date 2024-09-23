@@ -133,6 +133,26 @@ namespace Pizza
             }
         }
 
+        public static void DecreaseIngredients(Dictionary<int, int> ingredients)
+        {
+            MySqlCommand cmd = new("UPDATE ingredients SET Quantity = Quantity - @amount WHERE IngredientID = @id");
+            cmd.Parameters.Add("amount", MySqlDbType.Int32);
+            cmd.Parameters.Add("id", MySqlDbType.Int32);
+
+            using (MySqlConnection con = new(conStr))
+            {
+                cmd.Connection = con;
+                con.Open();
+
+                foreach (var item in ingredients)
+                {
+                    cmd.Parameters["amount"].Value = item.Value;
+                    cmd.Parameters["id"].Value = item.Key;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static bool EmailExists(string email)
         {
             bool res;

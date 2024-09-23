@@ -122,6 +122,7 @@ namespace Pizza
             }
 
             MessageBox.Show("Rendelés leadva");
+            cart.Clear();
         }
     }
 
