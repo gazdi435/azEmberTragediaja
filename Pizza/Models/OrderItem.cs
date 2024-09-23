@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Pizza.Models
 {
-    internal class OrderItem
+    internal class OrderItem : Queryable
     {
-        public OrderItem(int iD, int orderID, int pizzaID, int quantity, string size)
+        public OrderItem(MySqlDataReader reader) : base(reader)
         {
-            ID = iD;
-            OrderID = orderID;
-            PizzaID = pizzaID;
-            Quantity = quantity;
-            Size = size;
+            ID = reader.GetInt32("ID");
+            OrderID = reader.GetInt32("OrderID");
+            PizzaID = reader.GetInt32("PizzaID");
+            Quantity = reader.GetInt32("Quantity");
+            Size = reader.GetString("Size");
         }
 
         public int ID { get; private set; }
