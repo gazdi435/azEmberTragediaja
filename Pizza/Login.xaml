@@ -5,32 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pizza"
              mc:Ignorable="d" 
-             d:DesignHeight="420" d:DesignWidth="750">
+             d:DesignWidth="750" d:DesignHeight="420">
     <UserControl.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="Yellow" Offset="0" />
             <GradientStop Color="OrangeRed" Offset="1.2" />
         </LinearGradientBrush>
     </UserControl.Background>
-    <Grid Width="800" Height="450">
-      
-        
-        <StackPanel >
+
+    <Border CornerRadius="40" Width="500" Height="400" Background="White">
+        <StackPanel>
             <Label Content="Bejelentkezés"  FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40" />
-            <Label Content="Email cím:" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="Email cím" HorizontalAlignment="Center" FontWeight="Bold"/>
             <TextBox x:Name="emailTXTB" Width="150" Margin="0 5 0 20"/>
 
-            <Label Content="Jelszó:" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="Jelszó" HorizontalAlignment="Center" FontWeight="Bold"/>
             <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 40"/>
 
-            <Button Content="Bejelentkezés" Width="100" Click="Button_Click_1"/>
+            <Border CornerRadius="3" Width="150" Height="40" BorderThickness="1" Background="#18bd5b" Grid.Row="4" Grid.ColumnSpan="2">
+                <Button Content="Bejelentkezés"
+                        Click="LoginBtn_Click"
+                        Width="150" 
+                        Height="40"
+                        FontSize="12"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Foreground="White"/>
+            </Border>
 
 
-            <TextBlock FontSize="10" Margin="0 20" HorizontalAlignment="Center" Foreground="Blue" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" FontStyle="Italic">
-                Még nincsen fiókod? Regisztrálj!
-            </TextBlock>
+            <TextBlock FontSize="10"
+                       Margin="0 20"
+                       HorizontalAlignment="Center"
+                       Foreground="Blue"
+                       PreviewMouseLeftButtonDown="Register_Click"
+                       FontStyle="Italic"
+                       Text="Még nincsen fiókod? Regisztrálj!"
+                       Cursor="Hand"/>
         </StackPanel>
-       
-
-    </Grid>
+    </Border>
 </UserControl>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pizza"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignWidth="750" d:DesignHeight="420">
     <UserControl.Resources>
         <Style TargetType="Label">
@@ -40,11 +40,12 @@
 
             <Label Content="Regisztráció"  FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1">
                 <Label Content="Név"/>
                 <TextBox x:Name="nameTXTB"/>
-                <TextBox x:Name="name2TXTB"/>
             </StackPanel>
+            <TextBox x:Name="name2TXTB" Grid.Row="1" Grid.Column="1"/>
+            
             <StackPanel Grid.Row="2">
                 <Label Content="Telefonszám"/>
                 <TextBox x:Name="phoneTXTB"/>
@@ -81,7 +82,8 @@
                 <TextBlock Text="◄"
                            FontSize="30"
                            Cursor="Hand"
-                           ToolTip="Vissza a bejelentkezéshez"/>
+                           ToolTip="Vissza a bejelentkezéshez"
+                           PreviewMouseLeftButtonDown="TextBlock_Click"/>
             </Border>
         </Grid>
     </Border>

@@ -33,8 +33,6 @@ namespace Pizza
             InitializeComponent();
         }
 
-        //=> MainWindow.mainWindow.TransitionTo();
-
         private string MindenOk()
         {
             StringBuilder sb = new();
@@ -69,6 +67,12 @@ namespace Pizza
             MainWindow.user = newUser;
 
             MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.RefreshUI();
+        }
+
+        private void TextBlock_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.mainWindow.Page = new Login();
             MainWindow.mainWindow.RefreshUI();
         }
     }
