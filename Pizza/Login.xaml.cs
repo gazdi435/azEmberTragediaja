@@ -35,13 +35,15 @@ namespace Pizza
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
+            User? user = Sql.GetUserByEmail(emailTXTB.Text);
+
+            if (user == null || !user.VerifyPassword(pswB.Password))
             {
                 MessageBox.Show("Hibás email cím vagy jelszó!");
                 return;
             }
 
-            MainWindow.user = Sql.GetUserByEmail(emailTXTB.Text);
+            MainWindow.user = user;
 
             MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();
