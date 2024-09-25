@@ -21,7 +21,6 @@ namespace Pizza
     /// </summary>
     public partial class Login : UserControl
     {
-        private static User GetUserByEmail(string email) => throw new NotImplementedException();
         public Login()
         {
             InitializeComponent();

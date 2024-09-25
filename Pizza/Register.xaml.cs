@@ -38,14 +38,14 @@ namespace Pizza
             Regex email = new(@"^\S+@\S+\.\S+$"),
                   name = new("^[\\p{L} \\.'\\-]+$");
 
-            if (!email.IsMatch(emailTXTB.Text))
-                sb.Append("Az email cím már létezik!");
+            if (!email.IsMatch(emailTxt.Text))
+                sb.Append("Hibás email cím!");
 
-            if (!name.IsMatch(name2TXTB.Text))
+            if (!name.IsMatch($"{vezeteknevTxt.Text} {keresztnevTxt.Text}"))
                 sb.Append("Hibás felhasználónév!");
 
-            if (!Sql.EmailExists(emailTXTB.Text))
-                sb.Append("Hibás email cím!");
+            if (Sql.EmailExists(emailTxt.Text))
+                sb.Append("Az email cím már létezik!");
             
             return sb.ToString();
         }
@@ -60,7 +60,7 @@ namespace Pizza
                 return;
             }
 
-            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text, false);
+            User newUser = new($"{vezeteknevTxt.Text} {keresztnevTxt}", pswB.Password, emailTxt.Text, phoneTXTB.Text, addressTXTB.Text, false);
             Sql.CreateUser(newUser);
             MainWindow.user = newUser;
 
