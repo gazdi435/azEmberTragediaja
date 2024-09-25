@@ -205,6 +205,8 @@ INSERT INTO `users` (`ID`, `Name`, `Password`, `Email`, `Phone`, `Address`) VALU
 (5, 'Molnár Erika', 'erika654', 'molnar.erika@example.com', '0656789012', '1055 Budapest, Károly körút 5.'),
 (6, 'Farkas Péter', 'peter987', 'farkas.peter@example.com', '0667890123', '1066 Budapest, Teréz körút 8.');
 
+ALTER TABLE `users` ADD `IsAdmin` BOOLEAN NOT NULL DEFAULT FALSE AFTER `Address`;
+
 --
 -- Indexek a kiírt táblákhoz
 --

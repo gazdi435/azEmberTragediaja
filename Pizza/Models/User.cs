@@ -16,6 +16,7 @@ namespace Pizza.Models
         public string Email { get; private set; }
         public string Phone { get; private set; }
         public string Address { get; private set; }
+        public bool IsAdmin { get; private set; }
 
         public User(MySqlDataReader reader) : base(reader)
         {
@@ -25,15 +26,17 @@ namespace Pizza.Models
             Email = reader.GetString("Email");
             Phone = reader.GetString("Phone");
             Address = reader.GetString("Address");
+            IsAdmin = reader.GetBoolean("IsAdmin");
         }
 
-        public User(string name, string password, string email, string phone, string address) : base(null)
+        public User(string name, string password, string email, string phone, string address, Boolean isAdmin) : base(null)
         {
             Name = name;
             Password = password;
             Email = email;
             Phone = phone;
             Address = address;
+            IsAdmin = isAdmin;
         }
 
         public override string ToString() => Name;
