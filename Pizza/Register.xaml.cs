@@ -26,8 +26,6 @@ namespace Pizza
     /// </summary>
     public partial class Register : UserControl
     {
-        public string name;
-
         public Register()
         {
             InitializeComponent();
