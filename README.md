@@ -1,6 +1,4 @@
-Itt van egy példa a `README.md` fájlhoz a leírt pizza rendelési projekthez:
 
-```markdown
 # Pizza Rendelő Alkalmazás
 
 ## Projekt Áttekintés
