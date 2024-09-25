@@ -3,8 +3,11 @@ using Pizza.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Xml.Linq;
 
 namespace Pizza;
 
@@ -159,6 +162,47 @@ internal static class Sql
                 cmd.Parameters["id"].Value = item.Key;
                 cmd.ExecuteNonQuery();
             }
+        }
+    }
+
+    public static void SetIngredientAmount(int id, int newAmount)
+    {
+        MySqlCommand cmd = new("UPDATE ingredients SET Quantity = @amount WHERE ID = @id");
+        cmd.Parameters.AddWithValue("id", id);
+        cmd.Parameters.AddWithValue("amount", newAmount);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    public static Ingredient CreateIngredient(string name)
+    {
+        MySqlCommand cmd = new("INSERT INTO ingredients (Name, Quantity) VALUES (@name, 0)");
+        cmd.Parameters.AddWithValue("name", name);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            return new Ingredient(Convert.ToInt32(cmd.LastInsertedId), name, 0);
+        }
+    }
+
+    public static void DeleteIngredient(int id)
+    {
+        MySqlCommand cmd = new("DELETE FROM ingredients WHERE ID = @id");
+        cmd.Parameters.AddWithValue("id", id);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 
