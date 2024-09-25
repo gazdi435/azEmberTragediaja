@@ -2,7 +2,7 @@
 
 ## Projekt Áttekintés
 
-### Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy felhasználói, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. Illetve pizzázók követhetik raktáraikat és étlapjukat. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
+Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy felhasználói, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. Illetve pizzázók követhetik raktáraikat és étlapjukat. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
 
 ## Fejlesztők
 ### [Majoros Péter](https://github.com/Majoros-Peter "Majka github profilja")
