@@ -105,6 +105,24 @@ internal static class Sql
         return ingredients;
     }
 
+    public static int CreateUser(User user)
+    {
+        MySqlCommand cmd = new("INSERT INTO users (Name, Password, Email, Phone, Address) VALUES (@name, @pass, @email, @phone, @addr)");
+        cmd.Parameters.AddWithValue("name", user.Name);
+        cmd.Parameters.AddWithValue("pass", user.Password);
+        cmd.Parameters.AddWithValue("email", user.Email);
+        cmd.Parameters.AddWithValue("phone", user.Phone);
+        cmd.Parameters.AddWithValue("addr", user.Address);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            return Convert.ToInt32(cmd.LastInsertedId);
+        }
+    }
+    
     public static int CreateOrder()
     {
         MySqlCommand cmd = new("INSERT INTO orders (UserID, OrderDate, Status) VALUES (@user, now(), 'Baking')");
