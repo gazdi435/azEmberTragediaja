@@ -1,4 +1,3 @@
-Kód másolása
 # Pizza Rendelő Alkalmazás
 
 ## Projekt Áttekintés
@@ -71,7 +70,4 @@ Hibajavítások: Rendszeresen ellenőrizd a naplókat futásidőben fellépő hi
 Biztonsági Szempontok
 Hitelesítés: A felhasználói hitelesítést biztonságos módszerekkel kezeljük.
 Adattitkosítás: Az érzékeny adatokat, beleértve a jelszavakat, megfelelő titkosítási algoritmusokkal védjük.
-css
-Kód másolása
 
-Ez a dokumentáció magyar nyelvű változata, amelyet könnyen beilleszthetsz a `README.md` fájlba.
