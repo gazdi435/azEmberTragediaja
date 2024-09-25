@@ -89,4 +89,4 @@ Az alkalmazás három rétegből áll:
 - **Karbantartói Rendszer Bővítése**: A raktárkezelés és az adminisztrációs funkciók további finomítása és bővítése.
 - 
 
-**_Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára._**
+_Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára._
