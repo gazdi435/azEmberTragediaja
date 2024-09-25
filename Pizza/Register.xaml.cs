@@ -33,53 +33,47 @@ namespace Pizza
             InitializeComponent();
         }
 
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private string MindenOk()
         {
-            MainWindow.mainWindow.Page = new Login();
-            MainWindow.mainWindow.RefreshUI();
+            StringBuilder sb = new();
+
+            Regex email = new(@"^\S+@\S+\.\S+$"),
+                  name = new("^[\\p{L} \\.'\\-]+$");
+
+            if (!email.IsMatch(emailTXTB.Text))
+                sb.Append("Az email cím már létezik!");
+
+            if (!name.IsMatch(name2TXTB.Text))
+                sb.Append("Hibás felhasználónév!");
+
+            if (!Sql.EmailExists(emailTXTB.Text))
+                sb.Append("Hibás email cím!");
+            
+            return sb.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string pattern = @"^\S+@\S+\.\S+$";
+            string str = MindenOk();
 
-            if (!Regex.IsMatch(emailTXTB.Text, pattern))
+            if (!string.IsNullOrWhiteSpace(str))
             {
-                pattern = "^[\\p{L} \\.'\\-]+$";
-                if (!Regex.IsMatch(nameTXTB.Text, pattern))
-                {
-                    if (!Sql.EmailExists(emailTXTB.Text))
-                    {
-                        User newUser = new Models.User(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text);
-                        Sql.CreateUser(newUser);
-                        MainWindow.user = newUser;
-
-                        MainWindow.mainWindow.Page = new UserPage();
-                        MainWindow.mainWindow.RefreshUI();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Az email cím már létezik");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Hibás felhasználónév!");
-                }
+                MessageBox.Show($"Hibák:\n\t{string.Join("!\n\t", str.Split('!')[..^1])}!");
+                return;
             }
-            else
-            {
-                MessageBox.Show("Hibás email cím!");
-            }
-            
 
-            nameTXTB.Clear();
-            emailTXTB.Clear();
-            addressTXTB.Clear();
-            phoneTXTB.Clear();
-            pswB.Clear();
+            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text);
+            Sql.CreateUser(newUser);
+            MainWindow.user = newUser;
 
+            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.RefreshUI();
+        }
+
+        private void TextBlock_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.mainWindow.Page = new Login();
+            MainWindow.mainWindow.RefreshUI();
         }
     }
 }

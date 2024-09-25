@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -21,6 +22,7 @@ namespace Pizza
         public ContentControl Page { get; set; } = new Login();
         public static MainWindow mainWindow;
         internal static User user;
+
         public MainWindow()
         {
             InitializeComponent();

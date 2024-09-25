@@ -27,31 +27,22 @@ namespace Pizza
             InitializeComponent();
         }
 
-        
-
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Register_Click(object sender, MouseButtonEventArgs e)
         {
             MainWindow.mainWindow.Page = new Register();
             MainWindow.mainWindow.RefreshUI();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
-            {
-                MainWindow.mainWindow.Page = new UserPage();
-                MainWindow.mainWindow.RefreshUI();
-            }
-            else
+            if (!Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
             {
                 MessageBox.Show("Hibás email cím vagy jelszó!");
+                return;
             }
 
-
-            emailTXTB.Clear();
-            pswB.Clear();
-
-
+            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.RefreshUI();
         }
     }
 }
