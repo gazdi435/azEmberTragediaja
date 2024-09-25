@@ -1,4 +1,3 @@
-
 # Pizza Rendelő Alkalmazás
 
 ## Projekt Áttekintés
