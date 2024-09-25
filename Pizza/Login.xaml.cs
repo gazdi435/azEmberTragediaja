@@ -21,35 +21,28 @@ namespace Pizza
     /// </summary>
     public partial class Login : UserControl
     {
+        private static User GetUserByEmail(string email) => throw new NotImplementedException();
         public Login()
         {
             InitializeComponent();
         }
 
-        
-
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Register_Click(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new SignIn();
+            MainWindow.mainWindow.Page = new Register();
             MainWindow.mainWindow.RefreshUI();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
+            if (!Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
             {
-                MessageBox.Show("ok");
-            }
-            else
-            {
-                MessageBox.Show("No");
+                MessageBox.Show("Hibás email cím vagy jelszó!");
+                return;
             }
 
-
-            emailTXTB.Clear();
-            pswB.Clear();
-
-
+            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.RefreshUI();
         }
     }
 }
