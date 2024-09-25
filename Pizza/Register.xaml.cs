@@ -60,11 +60,11 @@ namespace Pizza
                 return;
             }
 
-            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text);
+            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text, false);
             Sql.CreateUser(newUser);
             MainWindow.user = newUser;
 
-            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();
         }
 

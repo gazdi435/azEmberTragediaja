@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Pizza.Models
 {
-    internal class Ingredient : Queryable
+    public class Ingredient : Queryable
     {
         public int ID { get; private set; }
         public string Name { get; private set; }
-        public int Quantity { get; private set; }
+        public int Quantity { get; set; }
 
         public Ingredient(MySqlDataReader reader) : base(reader)
         {
