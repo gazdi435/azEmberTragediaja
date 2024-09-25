@@ -41,7 +41,9 @@ namespace Pizza
                 return;
             }
 
-            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.user = Sql.GetUserByEmail(emailTXTB.Text);
+
+            MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();
         }
     }
