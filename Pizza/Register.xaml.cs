@@ -52,6 +52,7 @@ namespace Pizza
             addressTXTB.Clear();
             phoneTXTB.Clear();
             pswB.Clear();
+
         }
     }
 }

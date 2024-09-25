@@ -39,9 +39,7 @@ namespace Pizza
         private void lbFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lbFood.SelectedIndex == -1)
-            {
                 return;
-            }
 
             selectedPizza = lbFood.SelectedItem as PizzaItem;
 
@@ -55,14 +53,13 @@ namespace Pizza
 
         private void btnAddToCart_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedPizza == null)
+            if (selectedPizza is null)
             {
                 MessageBox.Show("Ki kell választanod egy pizzát!");
                 return;
             }
 
-            int amount;
-            if (!(Int32.TryParse(tbCartAmount.Text, out amount)) || amount < 1)
+            if (!(Int32.TryParse(tbCartAmount.Text, out int amount)) || amount < 1)
             {
                 MessageBox.Show("Adj meg egy pozitív darabszámot!");
                 return;
@@ -82,22 +79,15 @@ namespace Pizza
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbSearch.Text == "")
-            {
-                lbFood.ItemsSource = pizzas;
-            }
-            else
-            {
-                lbFood.ItemsSource = pizzas.Where(x => x.Name.Contains(tbSearch.Text));      
-            }
+            lbFood.ItemsSource = string.IsNullOrWhiteSpace(tbSearch.Text)
+                                ? pizzas
+                                : pizzas.Where(x => x.Name.Contains(tbSearch.Text));
         }
 
         private void btnRemoveCart_Click(object sender, RoutedEventArgs e)
         {
             if (lbCart.SelectedIndex != -1)
-            {
                 cart.RemoveAt(lbCart.SelectedIndex);
-            }
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
@@ -122,10 +112,11 @@ namespace Pizza
             }
 
             MessageBox.Show("Rendelés leadva");
+            cart.Clear();
         }
     }
 
-    public class CartItem(PizzaItem pizza, int amount)
+    internal class CartItem(PizzaItem pizza, int amount)
     {
         public PizzaItem Pizza = pizza;
         public int Amount = amount;

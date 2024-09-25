@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 01:02 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Sze 23. 18:55
+-- Kiszolgáló verziója: 10.4.28-MariaDB
+-- PHP verzió: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,73 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pizza`
+-- Adatbázis: `pizza`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PlaceOrder` (`userID` INT, `orderData` VARCHAR(200))   BEGIN
-    DECLARE orderID INT;
-    DECLARE i INT DEFAULT 1;
-    DECLARE str VARCHAR(18);
-    DECLARE itemCount INT;
-
-    -- Get the next order ID
-    SELECT IFNULL(MAX(orders.OrderID), 0) + 1 INTO orderID FROM orders;
-
-    -- Insert into the orders table
-    INSERT INTO orders (OrderDate, Status, UserID)
-    VALUES (NOW(), 'Baking', userID);
-
-    -- Determine the number of items in orderData
-    SET itemCount = LENGTH(orderData) - LENGTH(REPLACE(orderData, ';', '')) + 1;
-
-    -- Process each item in orderData
-    WHILE i <= itemCount DO
-        SET str = SUBSTRING_INDEX(SUBSTRING_INDEX(orderData, ';', i), ';', -1);
-        IF str != '' THEN
-            CALL PlaceOrderItem(orderID, str);
-        END IF;
-        SET i = i + 1;
-    END WHILE;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PlaceOrderItem` (`orderID` INT, `data` VARCHAR(18))   BEGIN
-    DECLARE pizzaID INT;
-    DECLARE quantity INT;
-    DECLARE size VARCHAR(2);
-
-    -- Extract values from the data string
-    SET pizzaID = CAST(SUBSTRING_INDEX(data, ',', 1) AS SIGNED INTEGER);
-    SET quantity = CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, ',', 2), ',', -1) AS SIGNED INTEGER);
-    SET size = SUBSTRING_INDEX(data, ',', -1);
-
-    -- Insert into the orderitems table
-    INSERT INTO orderitems (OrderID, PizzaID, Quantity, Size)
-    VALUES (orderID, pizzaID, quantity, size);
-END$$
-
-DELIMITER ;
+CREATE DATABASE IF NOT EXISTS `pizza` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `pizza`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ingredients`
+-- Tábla szerkezet ehhez a táblához `ingredients`
 --
 
 CREATE TABLE `ingredients` (
-  `IngredientID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `Name` varchar(15) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `ingredients`
+-- A tábla adatainak kiíratása `ingredients`
 --
 
-INSERT INTO `ingredients` (`IngredientID`, `Name`, `Quantity`) VALUES
+INSERT INTO `ingredients` (`ID`, `Name`, `Quantity`) VALUES
 (1, 'Mozzarella', 500),
 (2, 'Pepperoni', 300),
 (3, 'Gomba', 200),
@@ -102,11 +57,11 @@ INSERT INTO `ingredients` (`IngredientID`, `Name`, `Quantity`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orderitems`
+-- Tábla szerkezet ehhez a táblához `orderitems`
 --
 
 CREATE TABLE `orderitems` (
-  `OrderItemID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `OrderID` int(11) NOT NULL,
   `PizzaID` int(11) NOT NULL,
   `Quantity` int(3) NOT NULL,
@@ -114,10 +69,10 @@ CREATE TABLE `orderitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `orderitems`
+-- A tábla adatainak kiíratása `orderitems`
 --
 
-INSERT INTO `orderitems` (`OrderItemID`, `OrderID`, `PizzaID`, `Quantity`, `Size`) VALUES
+INSERT INTO `orderitems` (`ID`, `OrderID`, `PizzaID`, `Quantity`, `Size`) VALUES
 (1, 1, 1, 2, '32'),
 (2, 1, 2, 1, '45'),
 (3, 2, 3, 1, '24'),
@@ -125,48 +80,24 @@ INSERT INTO `orderitems` (`OrderItemID`, `OrderID`, `PizzaID`, `Quantity`, `Size
 (5, 3, 5, 3, '45'),
 (6, 3, 6, 2, '32');
 
---
--- Triggers `orderitems`
---
-DELIMITER $$
-CREATE TRIGGER `update_ingredients_after_orderitem` AFTER INSERT ON `orderitems` FOR EACH ROW BEGIN
-    DECLARE scalingFactor DECIMAL(3,2);
-
-    SET scalingFactor = CASE 
-        WHEN NEW.Size = '24' THEN 1.0 
-        WHEN NEW.Size = '32' THEN 1.5
-        WHEN NEW.Size = '45' THEN 2.0
-        ELSE 1.0
-    END;
-
-    UPDATE ingredients i
-    JOIN toppings t ON i.IngredientID = t.IngredientID
-    JOIN pizzas p ON t.PizzaID = p.PizzaID
-    JOIN orderitems oi ON oi.PizzaID = p.PizzaID
-    SET i.Quantity = i.Quantity - (t.Quantity * NEW.Quantity * scalingFactor)
-    WHERE oi.OrderItemID = NEW.OrderItemID;
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Tábla szerkezet ehhez a táblához `orders`
 --
 
 CREATE TABLE `orders` (
-  `OrderID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `OrderDate` datetime NOT NULL,
   `Status` enum('Baking','On the way','Delivered') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `orders`
+-- A tábla adatainak kiíratása `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `UserID`, `OrderDate`, `Status`) VALUES
+INSERT INTO `orders` (`ID`, `UserID`, `OrderDate`, `Status`) VALUES
 (1, 1, '2024-09-18 22:06:01', 'Baking'),
 (2, 2, '2024-09-18 22:13:12', 'Baking'),
 (3, 3, '2024-09-18 22:22:59', 'Baking');
@@ -174,11 +105,11 @@ INSERT INTO `orders` (`OrderID`, `UserID`, `OrderDate`, `Status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pizzas`
+-- Tábla szerkezet ehhez a táblához `pizzas`
 --
 
 CREATE TABLE `pizzas` (
-  `PizzaID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `Description` varchar(300) NOT NULL,
   `Img` blob DEFAULT NULL,
@@ -186,10 +117,10 @@ CREATE TABLE `pizzas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `pizzas`
+-- A tábla adatainak kiíratása `pizzas`
 --
 
-INSERT INTO `pizzas` (`PizzaID`, `Name`, `Description`, `Img`, `Price`) VALUES
+INSERT INTO `pizzas` (`ID`, `Name`, `Description`, `Img`, `Price`) VALUES
 (1, 'Margherita', 'Hagyományos pizza friss mozzarella sajttal, bazsalikommal és pizzaszósszal.', NULL, 1200),
 (2, 'Pepperoni', 'Pizza gazdag pepperonival, mozzarella sajttal és ízletes pizzaszósszal.', NULL, 1500),
 (3, 'Veggie', 'Vegetáriánus pizza gombával, hagymával, kukoricával és mozzarella sajttal.', NULL, 1400),
@@ -202,21 +133,21 @@ INSERT INTO `pizzas` (`PizzaID`, `Name`, `Description`, `Img`, `Price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `toppings`
+-- Tábla szerkezet ehhez a táblához `toppings`
 --
 
 CREATE TABLE `toppings` (
-  `ToppingID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `PizzaID` int(11) NOT NULL,
   `IngredientID` int(11) NOT NULL,
   `Quantity` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `toppings`
+-- A tábla adatainak kiíratása `toppings`
 --
 
-INSERT INTO `toppings` (`ToppingID`, `PizzaID`, `IngredientID`, `Quantity`) VALUES
+INSERT INTO `toppings` (`ID`, `PizzaID`, `IngredientID`, `Quantity`) VALUES
 (1, 1, 1, 150),
 (2, 1, 5, 200),
 (3, 2, 1, 150),
@@ -250,11 +181,11 @@ INSERT INTO `toppings` (`ToppingID`, `PizzaID`, `IngredientID`, `Quantity`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tábla szerkezet ehhez a táblához `users`
 --
 
 CREATE TABLE `users` (
-  `UserID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Password` varchar(20) NOT NULL,
   `Email` varchar(100) NOT NULL,
@@ -263,10 +194,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Dumping data for table `users`
+-- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`UserID`, `Name`, `Password`, `Email`, `Phone`, `Address`) VALUES
+INSERT INTO `users` (`ID`, `Name`, `Password`, `Email`, `Phone`, `Address`) VALUES
 (1, 'Kiss László', 'laszlo123', 'kiss.laszlo@example.com', '0612345678', '1011 Budapest, Múzeum körút 10.'),
 (2, 'Horváth Júlia', 'julia456', 'horvath.julia@example.com', '0623456789', '1022 Budapest, Batthyány tér 5.'),
 (3, 'Németh Gábor', 'gabor789', 'nemeth.gabor@example.com', '0634567890', '1033 Budapest, Bécsi út 45.'),
@@ -275,113 +206,113 @@ INSERT INTO `users` (`UserID`, `Name`, `Password`, `Email`, `Phone`, `Address`) 
 (6, 'Farkas Péter', 'peter987', 'farkas.peter@example.com', '0667890123', '1066 Budapest, Teréz körút 8.');
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `ingredients`
+-- A tábla indexei `ingredients`
 --
 ALTER TABLE `ingredients`
-  ADD PRIMARY KEY (`IngredientID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `orderitems`
+-- A tábla indexei `orderitems`
 --
 ALTER TABLE `orderitems`
-  ADD PRIMARY KEY (`OrderItemID`),
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_OrderItems_Orders` (`OrderID`),
   ADD KEY `FK_OrderItems_Pizzas` (`PizzaID`);
 
 --
--- Indexes for table `orders`
+-- A tábla indexei `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`OrderID`),
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_Orders_Users` (`UserID`);
 
 --
--- Indexes for table `pizzas`
+-- A tábla indexei `pizzas`
 --
 ALTER TABLE `pizzas`
-  ADD PRIMARY KEY (`PizzaID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `toppings`
+-- A tábla indexei `toppings`
 --
 ALTER TABLE `toppings`
-  ADD PRIMARY KEY (`ToppingID`) USING BTREE,
+  ADD PRIMARY KEY (`ID`) USING BTREE,
   ADD KEY `FK_PizzaIngredients_Pizzas` (`PizzaID`),
   ADD KEY `FK_PizzaIngredients_Ingredients` (`IngredientID`);
 
 --
--- Indexes for table `users`
+-- A tábla indexei `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`UserID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT for table `ingredients`
+-- AUTO_INCREMENT a táblához `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `IngredientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `orderitems`
+-- AUTO_INCREMENT a táblához `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `OrderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pizzas`
+-- AUTO_INCREMENT a táblához `pizzas`
 --
 ALTER TABLE `pizzas`
-  MODIFY `PizzaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `toppings`
+-- AUTO_INCREMENT a táblához `toppings`
 --
 ALTER TABLE `toppings`
-  MODIFY `ToppingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Megkötések a kiírt táblákhoz
 --
 
 --
--- Constraints for table `orderitems`
+-- Megkötések a táblához `orderitems`
 --
 ALTER TABLE `orderitems`
-  ADD CONSTRAINT `FK_OrderItems_Orders` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
-  ADD CONSTRAINT `FK_OrderItems_Pizzas` FOREIGN KEY (`PizzaID`) REFERENCES `pizzas` (`PizzaID`);
+  ADD CONSTRAINT `FK_OrderItems_Orders` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`ID`),
+  ADD CONSTRAINT `FK_OrderItems_Pizzas` FOREIGN KEY (`PizzaID`) REFERENCES `pizzas` (`ID`);
 
 --
--- Constraints for table `orders`
+-- Megkötések a táblához `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`);
+  ADD CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`);
 
 --
--- Constraints for table `toppings`
+-- Megkötések a táblához `toppings`
 --
 ALTER TABLE `toppings`
-  ADD CONSTRAINT `FK_PizzaIngredients_Ingredients` FOREIGN KEY (`IngredientID`) REFERENCES `ingredients` (`IngredientID`),
-  ADD CONSTRAINT `FK_PizzaIngredients_Pizzas` FOREIGN KEY (`PizzaID`) REFERENCES `pizzas` (`PizzaID`);
+  ADD CONSTRAINT `FK_PizzaIngredients_Ingredients` FOREIGN KEY (`IngredientID`) REFERENCES `ingredients` (`ID`),
+  ADD CONSTRAINT `FK_PizzaIngredients_Pizzas` FOREIGN KEY (`PizzaID`) REFERENCES `pizzas` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
