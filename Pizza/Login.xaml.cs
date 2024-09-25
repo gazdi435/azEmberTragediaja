@@ -39,8 +39,8 @@ namespace Pizza
         {
             if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
             {
-                //MainWindow.mainWindow.Page = new UserPage();
-                //MainWindow.mainWindow.RefreshUI();
+                MainWindow.mainWindow.Page = new UserPage();
+                MainWindow.mainWindow.RefreshUI();
             }
             else
             {
