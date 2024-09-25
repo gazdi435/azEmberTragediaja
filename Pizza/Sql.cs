@@ -235,6 +235,20 @@ internal static class Sql
         }
     }
 
+    public static void DeleteTopping(int pizzaId, int ingredientId)
+    {
+        MySqlCommand cmd = new("DELETE FROM toppings WHERE PizzaId = @pizzaId AND ingredientID = @ingredientId");
+        cmd.Parameters.AddWithValue("pizzaId", pizzaId);
+        cmd.Parameters.AddWithValue("ingredientId", ingredientId);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     #region __Auth__
     public static User GetUserByEmail(string email)
     {

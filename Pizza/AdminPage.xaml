@@ -23,13 +23,14 @@
                     <DataGrid x:Name="dgIngredients"
                               Grid.ColumnSpan="2"
                               AutoGenerateColumns="False"
+                              CanUserResizeRows="False"
                               CellEditEnding="dgIngredients_CellEditEnding">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Alapanyag"
                                                 Binding="{Binding Name}"
                                                 Width="*"
                                                 IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Darab"
+                            <DataGridTextColumn Header="Készlet"
                                                 Binding="{Binding Quantity}"
                                                 Width="100"/>
                         </DataGrid.Columns>
@@ -44,11 +45,12 @@
                             Új alapanyag
                         </Button>
                     </StackPanel>
-                    
+
                     <Button x:Name="btnDeleteIngredient"
                             Grid.Row="1"
                             Grid.Column="1"
-                            Margin="4 8 0 0" Click="btnDeleteIngredient_Click">
+                            Margin="4 8 0 0"
+                            Click="btnDeleteIngredient_Click">
                         Törlés
                     </Button>
 
@@ -77,6 +79,7 @@
                                 Grid.ColumnSpan="2"
                                 AutoGenerateColumns="False"
                                 CanUserAddRows="False"
+                                CanUserResizeRows="False"
                                 CellEditEnding="dgPizzaIngredients_CellEditEnding">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Alapanyag"
@@ -95,14 +98,15 @@
                         <Button x:Name="btnPizzaAddIngredient"
                                 Margin="0 4 4 0"
                                 Click="btnPizzaAddIngredient_Click">
-                            Új alapanyag
+                            Hozzáadás
                         </Button>
                     </StackPanel>
 
                     <Button x:Name="btnPizzaDeleteIngredient"
                             Grid.Row="2"
                             Grid.Column="1"
-                            Margin="4 8 0 0">
+                            Margin="4 8 0 0"
+                            Click="btnPizzaDeleteIngredient_Click">
                         Törlés
                     </Button>
 

@@ -71,6 +71,7 @@ namespace Pizza
 
             Ingredient newIngredient = Sql.CreateIngredient(tbNewIngredient.Text);
             ingredients.Add(newIngredient);
+            UpdatePizza();
         }
 
         private void btnDeleteIngredient_Click(object sender, RoutedEventArgs e)
@@ -95,6 +96,7 @@ namespace Pizza
 
                 
                 ingredients.Remove(ingredient);
+                UpdatePizza();
             }
         }
 
@@ -149,6 +151,20 @@ namespace Pizza
             PizzaItem selectedPizza = cbPizza.SelectedItem as PizzaItem;
             Sql.CreateTopping(selectedPizza.ID, ingredient.ID);
 
+            UpdatePizza();
+        }
+
+        private void btnPizzaDeleteIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgPizzaIngredients.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            PizzaIngredientView selected = dgPizzaIngredients.SelectedItem as PizzaIngredientView;
+            PizzaItem selectedPizza = cbPizza.SelectedItem as PizzaItem;
+
+            Sql.DeleteTopping(selectedPizza.ID, selected.Ingredient.ID);
             UpdatePizza();
         }
     }
