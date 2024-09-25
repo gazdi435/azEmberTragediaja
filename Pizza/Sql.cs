@@ -110,9 +110,10 @@ internal static class Sql
 
     public static int CreateUser(User user)
     {
-        MySqlCommand cmd = new("INSERT INTO users (Name, Password, Email, Phone, Address) VALUES (@name, @pass, @email, @phone, @addr)");
+        MySqlCommand cmd = new("INSERT INTO users (Name, Password, Salt, Email, Phone, Address) VALUES (@name, @pass, @salt, @email, @phone, @addr)");
         cmd.Parameters.AddWithValue("name", user.Name);
-        cmd.Parameters.AddWithValue("pass", user.Password);
+        cmd.Parameters.AddWithValue("pass", user.HashedPassword);
+        cmd.Parameters.AddWithValue("salt", user.Salt);
         cmd.Parameters.AddWithValue("email", user.Email);
         cmd.Parameters.AddWithValue("phone", user.Phone);
         cmd.Parameters.AddWithValue("addr", user.Address);
@@ -268,7 +269,7 @@ internal static class Sql
     }
 
     #region __Auth__
-    public static User GetUserByEmail(string email)
+    public static User? GetUserByEmail(string email)
     {
         User user;
         MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email");
@@ -279,6 +280,11 @@ internal static class Sql
             con.Open();
             using(MySqlDataReader reader = cmd.ExecuteReader())
             {
+                if (!reader.HasRows)
+                {
+                    return null;
+                }
+
                 reader.Read();
                 user = new(reader);
             }
@@ -291,24 +297,6 @@ internal static class Sql
         bool res;
         MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email");
         cmd.Parameters.AddWithValue("email", email);
-        using(MySqlConnection con = new(conStr))
-        {
-            cmd.Connection = con;
-            con.Open();
-            using(MySqlDataReader reader = cmd.ExecuteReader())
-            {
-                res = reader.Read();
-            }
-        }
-
-        return res;
-    }
-    public static bool EmailPasswordValid(string email, string password)
-    {
-        bool res;
-        MySqlCommand cmd = new("SELECT * FROM users WHERE Email = @email AND Password = @password");
-        cmd.Parameters.AddWithValue("email", email);
-        cmd.Parameters.AddWithValue("password", password);
         using(MySqlConnection con = new(conStr))
         {
             cmd.Connection = con;

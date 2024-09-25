@@ -4,6 +4,11 @@
 
 Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy felhasználói, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. Illetve pizzázók követhetik raktáraikat és étlapjukat. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
 
+## Fejlesztők
+- ### [Majoros Péter](https://github.com/Majoros-Peter "Majka github profilja")
+- ### [Győrfi Marcell](https://github.com/gyorfimarcell "Győrfi Marcell github profilja")
+- ### [Gazdag Zsolt](www.github.com/gazdi435 "Én jómagam nekem számomra részemre")
+
 ## Rendszer Architektúra
 
 Az alkalmazás három rétegből áll:
@@ -66,6 +71,16 @@ Az alkalmazás három rétegből áll:
 - **Regisztráció és Bejelentkezés**: A felhasználó regisztrálhat új fiókot vagy bejelentkezhet meglévő hitelesítő adataival.
 - **Pizza Böngészés és Rendelés**: A felhasználó böngészheti a pizzák listáját, megtekintheti a hozzávalókat, kosárba helyezheti a kiválasztott pizzákat, majd leadhatja a rendelést.
 - **Rendelés**: A rendelés leadása után az adatok bekerülnek az adatbázisba, és a felhasználó értesítést kap a rendelés sikeres feldolgozásáról.
+
+### Felhasználói felület
+<img src="/readmeImages/regist.png" alt="drawing" width="500"/>
+<img src="/readmeImages/login.png" alt="drawing" width="500"/>
+<img src="/readmeImages/main.png" alt="drawing" width="500"/>
+
+- 1. **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
+- 2. **Itt láthatja a pizza alapanyagait.
+- 3. **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
+- 4. **Kiválaszthatja az egyes pizzák mennyiségét.
 
 ### Karbantartói Funkciók (Fejlesztés alatt)
 
