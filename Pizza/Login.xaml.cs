@@ -26,8 +26,6 @@ namespace Pizza
             InitializeComponent();
         }
 
-        
-
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow.mainWindow.Login = new Register();

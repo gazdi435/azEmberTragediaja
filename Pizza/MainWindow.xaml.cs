@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -33,6 +34,27 @@ namespace Pizza
         {
             DataContext = null;
             DataContext = this;
+        }
+
+        private void TransitionTo(UserControl newUserControl)
+        {
+            var fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5))
+            {
+                EasingFunction = new QuarticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            fadeOutAnimation.Completed += (s, e) =>
+            {
+                mainCC= newUserControl;
+                RefreshUI();
+                var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5))
+                {
+                    EasingFunction = new QuarticEase { EasingMode = EasingMode.EaseInOut }
+                };
+                mainCC.BeginAnimation(OpacityProperty, fadeInAnimation);
+            };
+
+            mainCC.BeginAnimation(OpacityProperty, fadeOutAnimation);
         }
     }
 }

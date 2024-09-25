@@ -5,40 +5,84 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pizza"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
-    <Grid Width="800" Height="450">
-        
+             d:DesignWidth="750" d:DesignHeight="420">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Yellow" Offset="0" />
+            <GradientStop Color="OrangeRed" Offset="1.2" />
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Border CornerRadius="40" Width="500" Height="400" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <StackPanel>
-                <Label Content="Regisztráció"  FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10" />
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Név"  HorizontalAlignment="Center" Margin="0 0 0 0" FontWeight="Bold"/>
-                <TextBox Name="nameTXTB" Width="150"/>
+            <Label Content="Regisztráció"  FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                <Label Content="Név"/>
+                <TextBox x:Name="nameTXTB"/>
+                <TextBox x:Name="name2TXTB"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Email cím:" HorizontalAlignment="Center" Margin="0 10 0 0" FontWeight="Bold"/>
-                <TextBox x:Name="emailTXTB" Width="150"/>
+            <StackPanel Grid.Row="2">
+                <Label Content="Telefonszám"/>
+                <TextBox x:Name="phoneTXTB"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Szállítási cím"  HorizontalAlignment="Center" Margin="0 10 0 0" FontWeight="Bold"/>
-                <TextBox Name="addressTXTB" Width="150" />
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <Label Content="Szállítási cím"/>
+                <TextBox x:Name="addressTXTB"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Te le fonszám"  HorizontalAlignment="Center" Margin="0 10 0 0" FontWeight="Bold"/>
-                <TextBox Name="phoneTXTB" Width="150" />
+            <StackPanel Grid.Row="3">
+                <Label Content="Email cím"/>
+                <TextBox x:Name="emailTXTB"/>
             </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1">
+                <Label Content="Jelszó"/>
+                <PasswordBox x:Name="pswB" Width="150" Height="25"/>
+            </StackPanel>
+            <Border CornerRadius="3" Width="150" Height="40" BorderThickness="1" Background="#18bd5b" Grid.Row="4" Grid.ColumnSpan="2">
+                <Button Content="Regisztráció"
+                            Click="Button_Click"
+                            Width="150" 
+                            Height="40"
+                            FontSize="12"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Foreground="White"/>
+            </Border>
 
-            <Label Content="Jelszó:" HorizontalAlignment="Center" Margin="0 10 0 0" FontWeight="Bold"/>
-            <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 20"/>
-
-            <Button Content="Bejelentkezés" Width="100" Click="Button_Click"/>
-
-
-            <TextBlock FontSize="10" Margin="0 20" HorizontalAlignment="Center" Foreground="Blue" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" FontStyle="Italic">
-            Inkább bejelentkezek
-            </TextBlock>
-        </StackPanel>
-
-
-    </Grid>
+            <Border Height="30"
+                    Width="30"
+                    Background="Transparent"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="5">
+                <TextBlock Text="◄"
+                           FontSize="30"
+                           Cursor="Hand"
+                           ToolTip="Vissza a bejelentkezéshez"/>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>
