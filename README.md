@@ -2,7 +2,7 @@
 
 ## Projekt Áttekintés
 
-Ez a projekt egy webalapú pizza rendelési alkalmazás, amelyben a felhasználók regisztrálhatnak, bejelentkezhetnek, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
+Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy felhasználói, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. Illetve pizzázók követhetik raktáraikat és étlapjukat. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
 
 ## Rendszer Architektúra
 
@@ -25,12 +25,12 @@ Az alkalmazás három rétegből áll:
 
 3. **Karbantartói Réteg** (Fejlesztés alatt):
    - A karbantartói réteg lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
-   - A pizzák hozzáadhatók vagy törölhetők a rendelhető pizzák listájáról.
+   - A pizzák hozzáadhatók vagy törölhetők az étlapról.
    - A hozzávalók és feltétek módosíthatók.
 
 ## Technológiai Környezet
 
-- **Backend**: .NET C# 
+- **Backend**: c# WPF
 - **Adatbázis**: SQL (SQL Server vagy más SQL-kompatibilis adatbázis)
 
 ## Telepítés és Beállítás
@@ -43,13 +43,13 @@ Az alkalmazás három rétegből áll:
 
 1. Klónozd a repozitóriumot:
    ```bash
-   git clone https://github.com/your-repository/pizza-ordering-app.git
+   git clone https://github.com/gazdi435/azEmberTragediaja.git
    ```
    
 2. Nyisd meg a projektet a Visual Studio-ban:
    ```bash
-   cd pizza-ordering-app
-   open PizzaOrderingApp.sln
+   cd azEmberTragediaja
+   open azEmberTragediaja.sln
    ```
 
 3. Állítsd be az adatbázist:
@@ -57,7 +57,7 @@ Az alkalmazás három rétegből áll:
    - Futtasd az adatbázis migrációkat vagy a mellékelt szkripteket a szükséges táblák létrehozásához.
 
 4. Indítsd el az alkalmazást:
-   - A Visual Studio-ban építsd fel és futtasd az alkalmazást a webes felület indításához.
+   - A Visual Studio-ban építsd fel és futtasd az alkalmazást.
 
 ## Használati Útmutató
 
@@ -76,9 +76,9 @@ Az alkalmazás három rétegből áll:
 ## Hibakeresés és Hibaelhárítás
 
 - **Adatbázis Kapcsolati Hibák**: Ellenőrizd, hogy a konfigurációs fájlban lévő kapcsolati karakterlánc helyes-e.
-- **Bejelentkezési Hibák**: Győződj meg arról, hogy a felhasználói hitelesítő adatok helyesen vannak tárolva az adatbázisban.
+- **Bejelentkezési Hibák**: Győződj meg arról, hogy a felhasználói hitelesítő adatok helyességéről.
 
-## Fejlesztés és Karbantartás
+## Fejlesztés és Karbantartás 
 
 - **Rendszeres Frissítések**: A rendszer karbantartásakor ügyelj a verziók kezelésére és az adatbázis frissítésére.
 - **Biztonság**: Biztosítsd, hogy az adatbázisban tárolt érzékeny adatok (pl. jelszavak) titkosítva legyenek.
