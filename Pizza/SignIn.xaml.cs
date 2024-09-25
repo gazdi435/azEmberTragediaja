@@ -32,17 +32,26 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new Login();
+            MainWindow.mainWindow.Page = new Login();
             MainWindow.mainWindow.RefreshUI();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            if (!Sql.EmailExists(emailTXTB.Text))
+            {
+                MessageBox.Show("not implemented bro");
+            }
+            else
+            {
+                MessageBox.Show("Az email cím már létezik");
+            }
 
+            nameTXTB.Clear();
             emailTXTB.Clear();
+            addressTXTB.Clear();
+            phoneTXTB.Clear();
             pswB.Clear();
-            MessageBox.Show("Köszönjük");
         }
     }
 }

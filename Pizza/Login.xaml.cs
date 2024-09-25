@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pizza.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Pizza
     /// </summary>
     public partial class Login : UserControl
     {
+        private static User GetUserByEmail(string email) => throw new NotImplementedException();
         public Login()
         {
             InitializeComponent();
@@ -29,13 +31,21 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new SignIn();
+            MainWindow.mainWindow.Page = new SignIn();
             MainWindow.mainWindow.RefreshUI();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Hibás email cím vagy jelszó!");
+            }
+
 
             emailTXTB.Clear();
             pswB.Clear();
