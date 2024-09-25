@@ -64,9 +64,17 @@ Az alkalmazás három rétegből áll:
 ### Felhasználói Műveletek
 
 - **Regisztráció és Bejelentkezés**: A felhasználó regisztrálhat új fiókot vagy bejelentkezhet meglévő hitelesítő adataival.
-<img src="/readmeImages/regist.png" alt="drawing" width="500"/>
 - **Pizza Böngészés és Rendelés**: A felhasználó böngészheti a pizzák listáját, megtekintheti a hozzávalókat, kosárba helyezheti a kiválasztott pizzákat, majd leadhatja a rendelést.
 - **Rendelés**: A rendelés leadása után az adatok bekerülnek az adatbázisba, és a felhasználó értesítést kap a rendelés sikeres feldolgozásáról.
+
+### Felhasználói felület
+<img src="/readmeImages/regist.png" alt="drawing" width="500"/>
+<img src="/readmeImages/login.png" alt="drawing" width="500"/>
+<img src="/readmeImages/regismain.png" alt="drawing" width="500"/>
+1.**Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
+2.**Itt láthatja a pizza alapanyagait.
+3.**Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
+4.**Kiválaszthatja az egyes pizzák mennyiségét.
 
 ### Karbantartói Funkciók (Fejlesztés alatt)
 
