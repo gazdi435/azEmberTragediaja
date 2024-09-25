@@ -21,11 +21,11 @@ namespace Pizza
     /// <summary>
     /// Interaction logic for SignIn.xaml
     /// </summary>
-    public partial class SignIn : UserControl
+    public partial class Register : UserControl
     {
         public string name;
 
-        public SignIn()
+        public Register()
         {
             InitializeComponent();
         }

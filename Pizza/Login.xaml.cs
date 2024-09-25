@@ -31,7 +31,7 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Page = new SignIn();
+            MainWindow.mainWindow.Page = new Register();
             MainWindow.mainWindow.RefreshUI();
         }
 
@@ -39,7 +39,8 @@ namespace Pizza
         {
             if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
             {
-                
+                //MainWindow.mainWindow.Page = new UserPage();
+                //MainWindow.mainWindow.RefreshUI();
             }
             else
             {
