@@ -72,10 +72,10 @@ Az alkalmazás három rétegből áll:
 <img src="/readmeImages/login.png" alt="drawing" width="500"/>
 <img src="/readmeImages/main.png" alt="drawing" width="500"/>
 
--1. **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
--2. **Itt láthatja a pizza alapanyagait.
--3. **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
--4. **Kiválaszthatja az egyes pizzák mennyiségét.
+- 1. **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
+- 2. **Itt láthatja a pizza alapanyagait.
+- 3. **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
+- 4. **Kiválaszthatja az egyes pizzák mennyiségét.
 
 ### Karbantartói Funkciók (Fejlesztés alatt)
 
