@@ -1,28 +1,37 @@
+Itt van egy példa a `README.md` fájlhoz a leírt pizza rendelési projekthez:
+
+```markdown
 # Pizza Rendelő Alkalmazás
 
 ## Projekt Áttekintés
 
-Ez a projekt egy webalapú pizza rendelési rendszer, amelyben a felhasználók regisztrálhatnak, bejelentkezhetnek és pizzát rendelhetnek. Az alkalmazás **.NET C#** nyelven készült, a háttérrendszerhez, és **SQL** adatbázist használ az adatok tárolásához. A rendszer egy felhasználói rétegből és egy adatbázis rétegből áll, amelyek egymáshoz kapcsolódnak.
-
-## Célok és Feladatok
-
-- Lehetővé teszi a felhasználók számára, hogy regisztráljanak vagy bejelentkezzenek meglévő fiókkal.
-- Lehetővé teszi a felhasználók számára a pizzák böngészését, kiválasztását és rendelését.
-- Biztonságos és hatékony módon kezeli és tárolja a felhasználói adatokat és rendelési információkat.
+Ez a projekt egy webalapú pizza rendelési alkalmazás, amelyben a felhasználók regisztrálhatnak, bejelentkezhetnek, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
 
 ## Rendszer Architektúra
 
-### Rétegek
+Az alkalmazás három rétegből áll:
+1. **Felhasználói Réteg**:
+   - A felhasználó bejelentkezhet vagy új fiókot hozhat létre.
+   - A felhasználó böngészhet a rendelhető pizzák között.
+   - A pizzákhoz hozzávalókat láthat, és kiválaszthatja azokat.
+   - A felhasználó kosárhoz adhatja a pizzákat és megrendelheti őket.
+   - A leadott rendelések bekerülnek az adatbázisba.
 
-1. **Felhasználói réteg**: 
-   - Felelős a felhasználói interakciók kezeléséért, mint például a regisztráció, bejelentkezés és pizza rendelés.
-   - A felhasználók bejelentkezhetnek, fiókot hozhatnak létre, és böngészhetnek a rendelkezésre álló pizzák között.
+2. **Adatbázis Réteg**:
+   - Az adatbázis 6 táblát tartalmaz:
+     - **Felhasználók**: A regisztrált felhasználók adatai.
+     - **Rendelések**: A leadott rendelések.
+     - **Pizzák**: A rendelhető pizzák listája.
+     - **Hozzávalók**: A pizzákhoz tartozó alapanyagok listája.
+     - **Feltétek**: A rendelhető pizzákra tehető különböző feltétek.
+     - **RendelésElemei**: A rendelésekhez tartozó pizzák és azok részletei.
 
-2. **Adatbázis réteg**: 
-   - Kezeli a felhasználói adatokat és rendeléseket.
-   - **SQL** alapú adatbázist használ a felhasználói hitelesítési adatok, pizzainformációk és rendeléstörténet tárolására.
+3. **Karbantartói Réteg** (Fejlesztés alatt):
+   - A karbantartói réteg lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
+   - A pizzák hozzáadhatók vagy törölhetők a rendelhető pizzák listájáról.
+   - A hozzávalók és feltétek módosíthatók.
 
-### Technológiai Környezet
+## Technológiai Környezet
 
 - **Backend**: .NET C# 
 - **Adatbázis**: SQL (SQL Server vagy más SQL-kompatibilis adatbázis)
@@ -38,36 +47,50 @@ Ez a projekt egy webalapú pizza rendelési rendszer, amelyben a felhasználók 
 1. Klónozd a repozitóriumot:
    ```bash
    git clone https://github.com/your-repository/pizza-ordering-app.git
-Nyisd meg a megoldást a Visual Studio-ban:
+   ```
+   
+2. Nyisd meg a projektet a Visual Studio-ban:
+   ```bash
+   cd pizza-ordering-app
+   open PizzaOrderingApp.sln
+   ```
 
-bash
-Kód másolása
-cd pizza-ordering-app
-open PizzaOrderingApp.sln
-Állítsd be az adatbázist:
+3. Állítsd be az adatbázist:
+   - Hozz létre egy SQL adatbázist, és frissítsd a kapcsolati karakterláncot a konfigurációs fájlban.
+   - Futtasd az adatbázis migrációkat vagy a mellékelt szkripteket a szükséges táblák létrehozásához.
 
-Hozz létre egy SQL adatbázist, és frissítsd a kapcsolati karakterláncot a konfigurációs fájlban.
-Futtasd az adatbázis migrációkat vagy a mellékelt szkripteket a szükséges táblák létrehozásához.
-Indítsd el az alkalmazást:
+4. Indítsd el az alkalmazást:
+   - A Visual Studio-ban építsd fel és futtasd az alkalmazást a webes felület indításához.
 
-A Visual Studio-ban építsd fel és futtasd az alkalmazást a webes alkalmazás indításához.
-Használati Útmutató
-Felhasználói Regisztráció és Bejelentkezés
-Regisztráció: Látogass el a regisztrációs oldalra egy fiók létrehozásához.
-Bejelentkezés: Használd a bejelentkezési oldalt a hitelesítő adatokkal való belépéshez.
-Pizza Rendelés
-Bejelentkezés után a felhasználók böngészhetnek a rendelkezésre álló pizzák között, testre szabhatják rendelésüket, és leadhatják azt.
-A rendszer tárolja a felhasználó rendeléstörténetét későbbi hivatkozás céljából.
-Telepítés
-Háttérrendszer Telepítése: A .NET alkalmazást webkiszolgálón (pl. IIS) vagy felhőben (pl. Azure, AWS) kell üzemeltetni.
-Adatbázis Telepítése: Az SQL adatbázist felhőszolgáltatáson (pl. Azure SQL Database) vagy helyi szerveren kell üzemeltetni.
-Hibakeresés
-Adatbázis Kapcsolati Problémák: Ellenőrizd, hogy a konfigurációban szereplő kapcsolati karakterlánc megegyezik az adatbázis beállításaival.
-Bejelentkezési Hibák: Győződj meg arról, hogy a felhasználói hitelesítési adatok helyesen vannak tárolva az adatbázisban, és a jelszóhash-elés megfelelően működik.
-Karbantartás és Frissítések
-Adatbázis Frissítések: Ha a séma változik, futtasd az új migrációkat.
-Hibajavítások: Rendszeresen ellenőrizd a naplókat futásidőben fellépő hibák esetén, és oldd meg a problémákat.
-Biztonsági Szempontok
-Hitelesítés: A felhasználói hitelesítést biztonságos módszerekkel kezeljük.
-Adattitkosítás: Az érzékeny adatokat, beleértve a jelszavakat, megfelelő titkosítási algoritmusokkal védjük.
+## Használati Útmutató
 
+### Felhasználói Műveletek
+
+- **Regisztráció és Bejelentkezés**: A felhasználó regisztrálhat új fiókot vagy bejelentkezhet meglévő hitelesítő adataival.
+- **Pizza Böngészés és Rendelés**: A felhasználó böngészheti a pizzák listáját, megtekintheti a hozzávalókat, kosárba helyezheti a kiválasztott pizzákat, majd leadhatja a rendelést.
+- **Rendelés**: A rendelés leadása után az adatok bekerülnek az adatbázisba, és a felhasználó értesítést kap a rendelés sikeres feldolgozásáról.
+
+### Karbantartói Funkciók (Fejlesztés alatt)
+
+- **Pizzák Kezelése**: Pizzák hozzáadása és eltávolítása a rendelhető pizzák listájáról.
+- **Hozzávalók és Feltétek Kezelése**: A pizzákhoz tartozó hozzávalók és feltétek módosítása.
+- **Raktárkészletek Figyelése**: Az adminisztrátorok számára lehetőség nyílik a raktárkészletek figyelemmel követésére.
+
+## Hibakeresés és Hibaelhárítás
+
+- **Adatbázis Kapcsolati Hibák**: Ellenőrizd, hogy a konfigurációs fájlban lévő kapcsolati karakterlánc helyes-e.
+- **Bejelentkezési Hibák**: Győződj meg arról, hogy a felhasználói hitelesítő adatok helyesen vannak tárolva az adatbázisban.
+
+## Fejlesztés és Karbantartás
+
+- **Rendszeres Frissítések**: A rendszer karbantartásakor ügyelj a verziók kezelésére és az adatbázis frissítésére.
+- **Biztonság**: Biztosítsd, hogy az adatbázisban tárolt érzékeny adatok (pl. jelszavak) titkosítva legyenek.
+
+## További Fejlesztési Lehetőségek
+
+- **Felhasználói Felület Javítása**: További funkciók hozzáadása, például rendelések nyomon követése.
+- **Karbantartói Rendszer Bővítése**: A raktárkezelés és az adminisztrációs funkciók további finomítása és bővítése.
+
+```
+
+Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára.
