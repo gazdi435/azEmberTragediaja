@@ -41,14 +41,15 @@ namespace Pizza
                   name = new("^[\\p{L} \\.'\\-]+$");
 
             if (!email.IsMatch(emailTXTB.Text))
-                sb.Append("Az email cím már létezik!");
+                sb.Append("Hibás email cím!");
+            
 
             if (!name.IsMatch(name2TXTB.Text))
                 sb.Append("Hibás felhasználónév!");
 
-            if (!Sql.EmailExists(emailTXTB.Text))
-                sb.Append("Hibás email cím!");
-            
+            if (Sql.EmailExists(emailTXTB.Text))
+                sb.Append("Az email cím már létezik!");
+
             return sb.ToString();
         }
 
