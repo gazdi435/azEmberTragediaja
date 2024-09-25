@@ -64,7 +64,7 @@ Az alkalmazás három rétegből áll:
 ### Felhasználói Műveletek
 
 - **Regisztráció és Bejelentkezés**: A felhasználó regisztrálhat új fiókot vagy bejelentkezhet meglévő hitelesítő adataival.
-<img src="/readmeImages/regist.png" alt="drawing" width="200"/>
+<img src="/readmeImages/regist.png" alt="drawing" width="500"/>
 - **Pizza Böngészés és Rendelés**: A felhasználó böngészheti a pizzák listáját, megtekintheti a hozzávalókat, kosárba helyezheti a kiválasztott pizzákat, majd leadhatja a rendelést.
 - **Rendelés**: A rendelés leadása után az adatok bekerülnek az adatbázisba, és a felhasználó értesítést kap a rendelés sikeres feldolgozásáról.
 
