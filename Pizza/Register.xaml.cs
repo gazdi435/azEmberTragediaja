@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using MySqlConnector;
+using System.Text.RegularExpressions;
+using Pizza.Models;
+using System.Diagnostics;
 
 namespace Pizza
 {
@@ -32,13 +35,41 @@ namespace Pizza
 
         //=> MainWindow.mainWindow.TransitionTo();
 
+        private string MindenOk()
+        {
+            StringBuilder sb = new();
+
+            Regex email = new(@"^\S+@\S+\.\S+$"),
+                  name = new("^[\\p{L} \\.'\\-]+$");
+
+            if (!email.IsMatch(emailTXTB.Text))
+                sb.Append("Az email cím már létezik!");
+
+            if (!name.IsMatch(name2TXTB.Text))
+                sb.Append("Hibás felhasználónév!");
+
+            if (!Sql.EmailExists(emailTXTB.Text))
+                sb.Append("Hibás email cím!");
+            
+            return sb.ToString();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            string str = MindenOk();
 
-            emailTXTB.Clear();
-            pswB.Clear();
-            MessageBox.Show("Köszönjük");
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                MessageBox.Show($"Hibák:\n\t{string.Join("!\n\t", str.Split('!')[..^1])}!");
+                return;
+            }
+
+            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text);
+            Sql.CreateUser(newUser);
+            MainWindow.user = newUser;
+
+            MainWindow.mainWindow.Page = new UserPage();
+            MainWindow.mainWindow.RefreshUI();
         }
     }
 }

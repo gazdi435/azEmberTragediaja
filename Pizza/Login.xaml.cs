@@ -21,6 +21,7 @@ namespace Pizza
     /// </summary>
     public partial class Login : UserControl
     {
+        private static User GetUserByEmail(string email) => throw new NotImplementedException();
         public Login()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new Register();
+            MainWindow.mainWindow.Page = new Register();
             MainWindow.mainWindow.RefreshUI();
         }
 
@@ -36,11 +37,12 @@ namespace Pizza
         {
             if (Sql.EmailPasswordValid(emailTXTB.Text, pswB.Password))
             {
-                MessageBox.Show("ok");
+                MainWindow.mainWindow.Page = new UserPage();
+                MainWindow.mainWindow.RefreshUI();
             }
             else
             {
-                MessageBox.Show("No");
+                MessageBox.Show("Hibás email cím vagy jelszó!");
             }
 
 

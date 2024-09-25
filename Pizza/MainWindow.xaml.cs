@@ -19,7 +19,7 @@ namespace Pizza
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ContentControl Login { get; set; } = new Login();
+        public ContentControl Page { get; set; } = new Login();
         public static MainWindow mainWindow;
         internal static User user;
         public MainWindow()
@@ -36,7 +36,7 @@ namespace Pizza
             DataContext = this;
         }
 
-        private void TransitionTo(UserControl newUserControl)
+        public void TransitionTo(UserControl newUserControl)
         {
             var fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5))
             {
@@ -45,7 +45,7 @@ namespace Pizza
 
             fadeOutAnimation.Completed += (s, e) =>
             {
-                mainCC= newUserControl;
+                Page = newUserControl;
                 RefreshUI();
                 var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5))
                 {
