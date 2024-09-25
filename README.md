@@ -87,7 +87,6 @@ Az alkalmazás három rétegből áll:
 
 - **Felhasználói Felület Javítása**: További funkciók hozzáadása, például rendelések nyomon követése.
 - **Karbantartói Rendszer Bővítése**: A raktárkezelés és az adminisztrációs funkciók további finomítása és bővítése.
+- 
 
-```
-
-Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára.
+*_Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára._*
