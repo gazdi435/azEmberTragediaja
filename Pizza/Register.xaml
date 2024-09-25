@@ -13,12 +13,6 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </UserControl.Resources>
-    <UserControl.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="Yellow" Offset="0" />
-            <GradientStop Color="OrangeRed" Offset="1.2" />
-        </LinearGradientBrush>
-    </UserControl.Background>
     <Border CornerRadius="40" Width="500" Height="400" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
