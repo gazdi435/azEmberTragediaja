@@ -55,7 +55,58 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Ételek">
-                <Label>Ételek</Label>
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ComboBox x:Name="cbPizza"
+                              Grid.ColumnSpan="1"
+                              Margin="0 0 0 8"
+                              SelectionChanged="cbPizza_SelectionChanged"/>
+
+                    <DataGrid x:Name="dgPizzaIngredients"
+                              Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                AutoGenerateColumns="False"
+                                CanUserAddRows="False"
+                                CellEditEnding="dgPizzaIngredients_CellEditEnding">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Alapanyag"
+                                Binding="{Binding Ingredient.Name}"
+                                Width="*"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Darab"
+                                Binding="{Binding Amount}"
+                                Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="2">
+                        <ComboBox x:Name="cbIngredient"
+                                 Margin="0 8 4 0"/>
+                        <Button x:Name="btnPizzaAddIngredient"
+                                Margin="0 4 4 0"
+                                Click="btnPizzaAddIngredient_Click">
+                            Új alapanyag
+                        </Button>
+                    </StackPanel>
+
+                    <Button x:Name="btnPizzaDeleteIngredient"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="4 8 0 0">
+                        Törlés
+                    </Button>
+
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

@@ -24,14 +24,19 @@ namespace Pizza
     public partial class AdminPage : UserControl
     {
         ObservableCollection<Ingredient> ingredients;
+        List<PizzaItem> pizzas;
 
         public AdminPage()
         {
             InitializeComponent();
-
+            
             ingredients = new(Sql.GetIngredients());
+            pizzas = Sql.GetPizzas();
 
             dgIngredients.ItemsSource = ingredients;
+
+            cbPizza.ItemsSource = pizzas;
+            cbIngredient.ItemsSource = ingredients;
         }
 
         private void dgIngredients_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -92,5 +97,65 @@ namespace Pizza
                 ingredients.Remove(ingredient);
             }
         }
+
+        private void UpdatePizza()
+        {
+            if (cbPizza.SelectedIndex == -1)
+            {
+                dgPizzaIngredients.ItemsSource = null;
+                cbIngredient.ItemsSource = ingredients;
+                return;
+            }
+
+            PizzaItem selected = cbPizza.SelectedItem as PizzaItem;
+            List<PizzaIngredientView> pizzaIngredients = Sql.GetPizzaIngredients(selected.ID)
+                .Select(x => new PizzaIngredientView() { Ingredient = x.Key, Amount = x.Value }).ToList();
+
+            dgPizzaIngredients.ItemsSource = pizzaIngredients;
+            cbIngredient.ItemsSource = ingredients.Where(x => !pizzaIngredients.Any(y => y.Ingredient.ID == x.ID));
+        }
+
+        private void cbPizza_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdatePizza();
+        }
+
+        private void dgPizzaIngredients_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            PizzaIngredientView editedIngredient = dgPizzaIngredients.SelectedItem as PizzaIngredientView;
+            PizzaItem selectedPizza = cbPizza.SelectedItem as PizzaItem;
+
+            var element = e.EditingElement as TextBox;
+            int newAmount;
+            if (!Int32.TryParse(element.Text, out newAmount) || newAmount < 1)
+            {
+                e.Cancel = true;
+                element.Text = editedIngredient.Amount.ToString();
+                return;
+            }
+
+            editedIngredient.Amount = newAmount;
+            Sql.SetToppingAmount(selectedPizza.ID, editedIngredient.Ingredient.ID, newAmount);
+        }
+
+        private void btnPizzaAddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbIngredient.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Ingredient ingredient = cbIngredient.SelectedItem as Ingredient;
+            PizzaItem selectedPizza = cbPizza.SelectedItem as PizzaItem;
+            Sql.CreateTopping(selectedPizza.ID, ingredient.ID);
+
+            UpdatePizza();
+        }
+    }
+
+    public class PizzaIngredientView
+    {
+        public Ingredient Ingredient { get; set; }
+        public int Amount { get; set; }
     }
 }

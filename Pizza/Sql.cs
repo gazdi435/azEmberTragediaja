@@ -206,6 +206,35 @@ internal static class Sql
         }
     }
 
+    public static void SetToppingAmount(int pizzaId, int ingredientId, int newAmount)
+    {
+        MySqlCommand cmd = new("UPDATE toppings SET Quantity = @amount WHERE PizzaID = @pizzaId AND IngredientID = @ingredientId");
+        cmd.Parameters.AddWithValue("pizzaId", pizzaId);
+        cmd.Parameters.AddWithValue("ingredientId", ingredientId);
+        cmd.Parameters.AddWithValue("amount", newAmount);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    public static void CreateTopping(int pizzaId, int ingredientId)
+    {
+        MySqlCommand cmd = new("INSERT INTO toppings(PizzaID, IngredientID, Quantity) VALUES(@pizzaId, @ingredientId, 10)");
+        cmd.Parameters.AddWithValue("pizzaId", pizzaId);
+        cmd.Parameters.AddWithValue("ingredientId", ingredientId);
+
+        using (MySqlConnection con = new(conStr))
+        {
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     #region __Auth__
     public static User GetUserByEmail(string email)
     {
