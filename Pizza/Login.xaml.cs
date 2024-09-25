@@ -30,7 +30,7 @@ namespace Pizza
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.mainWindow.Login = new SignIn();
+            MainWindow.mainWindow.Login = new Register();
             MainWindow.mainWindow.RefreshUI();
         }
 

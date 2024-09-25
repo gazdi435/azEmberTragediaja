@@ -10,7 +10,7 @@ namespace Pizza.Models
 {
     internal class User : Queryable
     {
-        public int ID { get; private set; }
+        public int ID { get; private set; } = 0;
         public string Name { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }
@@ -25,6 +25,15 @@ namespace Pizza.Models
             Email = reader.GetString("Email");
             Phone = reader.GetString("Phone");
             Address = reader.GetString("Address");
+        }
+
+        public User(string name, string password, string email, string phone, string address) : base(null)
+        {
+            Name = name;
+            Password = password;
+            Email = email;
+            Phone = phone;
+            Address = address;
         }
 
         public override string ToString() => Name;

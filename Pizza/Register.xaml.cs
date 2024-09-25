@@ -21,11 +21,11 @@ namespace Pizza
     /// <summary>
     /// Interaction logic for SignIn.xaml
     /// </summary>
-    public partial class SignIn : UserControl
+    public partial class Register : UserControl
     {
         public string name;
 
-        public SignIn()
+        public Register()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace Pizza
             MainWindow.mainWindow.RefreshUI();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             
 
