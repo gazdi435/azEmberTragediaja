@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace Pizza.Models;
 public abstract class Queryable<T>
 {
-    public Queryable(T prop) { }
+    public Queryable(T? prop) { }
 }
 
 public class Queryable: Queryable<MySqlDataReader>
 {
-    public Queryable(MySqlDataReader reader): base(reader) { }
+    public Queryable(MySqlDataReader? reader): base(reader) { }
 }

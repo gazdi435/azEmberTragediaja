@@ -60,9 +60,11 @@ namespace Pizza
                 return;
             }
 
-            User newUser = new($"{vezeteknevTxt.Text} {keresztnevTxt}", pswB.Password, emailTxt.Text, phoneTXTB.Text, addressTXTB.Text, false);
+            User newUser = new($"{vezeteknevTxt.Text} {keresztnevTxt.Text}", pswB.Password, emailTxt.Text, phoneTXTB.Text, addressTXTB.Text, false);
             Sql.CreateUser(newUser);
             MainWindow.user = newUser;
+
+            MessageBox.Show("Sikeres regisztráció!");
 
             MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();

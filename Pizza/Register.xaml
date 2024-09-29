@@ -27,7 +27,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Content="Regisztráció"  FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
+            <Label Content="Regisztráció" FontSize="30" FontWeight="Normal" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
 
             <StackPanel Grid.Row="1">
                 <Label Content="Vezetéknév"/>

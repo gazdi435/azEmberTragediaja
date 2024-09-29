@@ -47,5 +47,11 @@ namespace Pizza
             MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();
         }
+
+        private void pswB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                LoginBtn_Click(default, default);
+        }
     }
 }

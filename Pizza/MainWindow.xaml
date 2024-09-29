@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pizza"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Pizza rendelő" Height="450" Width="800">
+        Title="Pizza rendelő" Height="500" Width="800">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="Yellow" Offset="0" />
