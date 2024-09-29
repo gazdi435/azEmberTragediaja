@@ -26,8 +26,6 @@ namespace Pizza
     /// </summary>
     public partial class Register : UserControl
     {
-        public string name;
-
         public Register()
         {
             InitializeComponent();
@@ -40,16 +38,15 @@ namespace Pizza
             Regex email = new(@"^\S+@\S+\.\S+$"),
                   name = new("^[\\p{L} \\.'\\-]+$");
 
-            if (!email.IsMatch(emailTXTB.Text))
+            if (!email.IsMatch(emailTxt.Text))
                 sb.Append("Hibás email cím!");
-            
 
-            if (!name.IsMatch(name2TXTB.Text))
+            if (!name.IsMatch($"{vezeteknevTxt.Text} {keresztnevTxt.Text}"))
                 sb.Append("Hibás felhasználónév!");
 
-            if (Sql.EmailExists(emailTXTB.Text))
+            if (Sql.EmailExists(emailTxt.Text))
                 sb.Append("Az email cím már létezik!");
-
+            
             return sb.ToString();
         }
 
@@ -63,9 +60,11 @@ namespace Pizza
                 return;
             }
 
-            User newUser = new(nameTXTB.Text, pswB.Password, emailTXTB.Text, phoneTXTB.Text, addressTXTB.Text, false);
+            User newUser = new($"{vezeteknevTxt.Text} {keresztnevTxt.Text}", pswB.Password, emailTxt.Text, phoneTXTB.Text, addressTXTB.Text, false);
             Sql.CreateUser(newUser);
             MainWindow.user = newUser;
+
+            MessageBox.Show("Sikeres regisztráció!");
 
             MainWindow.mainWindow.Page = MainWindow.user.IsAdmin ? new AdminPage() : new UserPage();
             MainWindow.mainWindow.RefreshUI();

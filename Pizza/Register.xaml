@@ -12,18 +12,7 @@
             <Setter Property="Margin" Value="0 10 0 0"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
     </UserControl.Resources>
-    <UserControl.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="Yellow" Offset="0" />
-            <GradientStop Color="OrangeRed" Offset="1.2" />
-        </LinearGradientBrush>
-    </UserControl.Background>
     <Border CornerRadius="40" Width="500" Height="400" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,52 +27,59 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Content="Regisztráció"  FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
+            <Label Content="Regisztráció" FontSize="30" FontWeight="Normal" HorizontalAlignment="Center" Margin="0 0 0 10" Grid.ColumnSpan="2"/>
 
             <StackPanel Grid.Row="1">
-                <Label Content="Név"/>
-                <TextBox x:Name="nameTXTB"/>
+                <Label Content="Vezetéknév"/>
+                <TextBox x:Name="vezeteknevTxt"/>
             </StackPanel>
-            <TextBox x:Name="name2TXTB" Grid.Row="1" Grid.Column="1"/>
-            
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Label Content="Keresztnév"/>
+                <TextBox x:Name="keresztnevTxt" Grid.Row="1" Grid.Column="1"/>
+            </StackPanel>
             <StackPanel Grid.Row="2">
                 <Label Content="Telefonszám"/>
                 <TextBox x:Name="phoneTXTB"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <Label Content="Szállítási cím"/>
-                <TextBox x:Name="addressTXTB"/>
+                <TextBox x:Name="addressTXTB" Width="200"/>
             </StackPanel>
             <StackPanel Grid.Row="3">
                 <Label Content="Email cím"/>
-                <TextBox x:Name="emailTXTB"/>
+                <TextBox x:Name="emailTxt"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1">
                 <Label Content="Jelszó"/>
                 <PasswordBox x:Name="pswB" Width="150" Height="25"/>
             </StackPanel>
-            <Border CornerRadius="3" Width="150" Height="40" BorderThickness="1" Background="#18bd5b" Grid.Row="4" Grid.ColumnSpan="2">
-                <Button Content="Regisztráció"
-                            Click="Button_Click"
-                            Width="150" 
-                            Height="40"
-                            FontSize="12"
-                            BorderBrush="Transparent"
-                            Background="Transparent"
-                            Foreground="White"/>
-            </Border>
+
+            <Button Content="Regisztráció"
+                    Click="Button_Click"
+                    Width="150" 
+                    Height="40"
+                    FontSize="12"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    Style="{StaticResource LoginRegister}"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"/>
 
             <Border Height="30"
                     Width="30"
                     Background="Transparent"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="5">
-                <TextBlock Text="◄"
+                    Margin="45 15 0 0">
+                <TextBlock Text="▼"
                            FontSize="30"
                            Cursor="Hand"
                            ToolTip="Vissza a bejelentkezéshez"
-                           PreviewMouseLeftButtonDown="TextBlock_Click"/>
+                           PreviewMouseLeftButtonDown="TextBlock_Click">
+                    <TextBlock.RenderTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
             </Border>
         </Grid>
     </Border>

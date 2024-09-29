@@ -1,37 +1,28 @@
 ﻿<UserControl x:Class="Pizza.Login"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Pizza"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignWidth="750" d:DesignHeight="420">
-    <UserControl.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="Yellow" Offset="0" />
-            <GradientStop Color="OrangeRed" Offset="1.2" />
-        </LinearGradientBrush>
-    </UserControl.Background>
 
     <Border CornerRadius="40" Width="500" Height="400" Background="White">
         <StackPanel>
-            <Label Content="Bejelentkezés"  FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40" />
+            <Label Content="Bejelentkezés" FontSize="30" HorizontalAlignment="Center" Margin="0 10 0 40" />
             <Label Content="Email cím" HorizontalAlignment="Center" FontWeight="Bold"/>
             <TextBox x:Name="emailTXTB" Width="150" Margin="0 5 0 20"/>
 
             <Label Content="Jelszó" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 40"/>
+            <PasswordBox x:Name="pswB" Width="150" HorizontalAlignment="Center" Margin="0 5 0 40" KeyDown="pswB_KeyDown"/>
 
-            <Border CornerRadius="3" Width="150" Height="40" BorderThickness="1" Background="#18bd5b" Grid.Row="4" Grid.ColumnSpan="2">
-                <Button Content="Bejelentkezés"
-                        Click="LoginBtn_Click"
-                        Width="150" 
-                        Height="40"
-                        FontSize="12"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        Foreground="White"/>
-            </Border>
+            <Button Content="Bejelentkezés"
+                    Click="LoginBtn_Click"
+                    Width="150" 
+                    Height="40"
+                    FontSize="12"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    Style="{StaticResource LoginRegister}"/>
 
 
             <TextBlock FontSize="10"

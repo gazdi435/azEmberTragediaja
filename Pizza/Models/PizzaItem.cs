@@ -19,14 +19,6 @@ namespace Pizza.Models
         public BitmapImage Img { get; private set; }
         public double Price { get; private set; }
 
-        //public PizzaItem(int id, string name, string description, double price)
-        //{
-        //    ID = id;
-        //    Name = name;
-        //    Description = description;
-        //    Price = price;
-        //}
-
         public PizzaItem(MySqlDataReader reader) : base(reader)
         {
             ID = reader.GetInt32("ID");
