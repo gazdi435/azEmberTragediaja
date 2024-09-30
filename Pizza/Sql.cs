@@ -143,11 +143,10 @@ internal static class Sql
 
     public static void AddOrderItems(int orderId, Dictionary<int, int> pizzas)
     {
-        MySqlCommand cmd = new("INSERT INTO orderitems (OrderID, PizzaID, Quantity, Size) VALUES (@order, @pizza, @qty, @size)");
+        MySqlCommand cmd = new("INSERT INTO orderitems (OrderID, PizzaID, Quantity) VALUES (@order, @pizza, @qty)");
         cmd.Parameters.AddWithValue("order", orderId);
         cmd.Parameters.Add("pizza", MySqlDbType.Int32);
         cmd.Parameters.Add("qty", MySqlDbType.Int32);
-        cmd.Parameters.Add("size", MySqlDbType.String);
 
         using(MySqlConnection con = new(conStr))
         {
@@ -158,7 +157,6 @@ internal static class Sql
             {
                 cmd.Parameters["pizza"].Value = item.Key;
                 cmd.Parameters["qty"].Value = item.Value;
-                cmd.Parameters["size"].Value = "24"; //TODO
                 cmd.ExecuteNonQuery();
             }
         }

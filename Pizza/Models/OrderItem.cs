@@ -15,13 +15,11 @@ namespace Pizza.Models
             OrderID = reader.GetInt32("OrderID");
             PizzaID = reader.GetInt32("PizzaID");
             Quantity = reader.GetInt32("Quantity");
-            Size = reader.GetString("Size");
         }
 
         public int ID { get; private set; }
         public int OrderID { get; private set; }
         public int PizzaID { get; private set; }
         public int Quantity { get; private set; }
-        public string Size { get; private set; }
     }
 }

@@ -50,9 +50,7 @@ INSERT INTO `ingredients` (`ID`, `Name`, `Quantity`) VALUES
 (10, 'Ananász', 150),
 (11, 'BBQ Szósz', 300),
 (12, 'Feta', 200),
-(13, 'Gorgonzola', 300),
-(18, 'Teszt', 999),
-(20, 'asdasd', 0);
+(13, 'Gorgonzola', 300);
 
 -- --------------------------------------------------------
 
@@ -64,21 +62,20 @@ CREATE TABLE `orderitems` (
   `ID` int(11) NOT NULL,
   `OrderID` int(11) NOT NULL,
   `PizzaID` int(11) NOT NULL,
-  `Quantity` int(3) NOT NULL,
-  `Size` enum('24','32','45') NOT NULL
+  `Quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `orderitems`
 --
 
-INSERT INTO `orderitems` (`ID`, `OrderID`, `PizzaID`, `Quantity`, `Size`) VALUES
-(1, 1, 1, 2, '32'),
-(2, 1, 2, 1, '45'),
-(3, 2, 3, 1, '24'),
-(4, 2, 4, 2, '32'),
-(5, 3, 5, 3, '45'),
-(6, 3, 6, 2, '32');
+INSERT INTO `orderitems` (`ID`, `OrderID`, `PizzaID`, `Quantity`) VALUES
+(1, 1, 1, 2),
+(2, 1, 2, 1),
+(3, 2, 3, 1),
+(4, 2, 4, 2),
+(5, 3, 5, 3),
+(6, 3, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -112,7 +109,6 @@ CREATE TABLE `pizzas` (
   `ID` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `Description` varchar(300) NOT NULL,
-  `Img` blob DEFAULT NULL,
   `Price` decimal(4,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -120,15 +116,15 @@ CREATE TABLE `pizzas` (
 -- A tábla adatainak kiíratása `pizzas`
 --
 
-INSERT INTO `pizzas` (`ID`, `Name`, `Description`, `Img`, `Price`) VALUES
-(1, 'Margherita', 'Hagyományos pizza friss mozzarella sajttal, bazsalikommal és pizzaszósszal.', NULL, 1200),
-(2, 'Pepperoni', 'Pizza gazdag pepperonival, mozzarella sajttal és ízletes pizzaszósszal.', NULL, 1500),
-(3, 'Veggie', 'Vegetáriánus pizza gombával, hagymával, kukoricával és mozzarella sajttal.', NULL, 1400),
-(4, 'Hawaii', 'Pizza ananásszal, sonkával és mozzarella sajttal, édes-savanyú ízélménnyel.', NULL, 1600),
-(5, 'BBQ Chicken', 'Pizza grillezett csirkehússal, BBQ szósszal, vöröshagymával és mozzarella sajttal.', NULL, 1700),
-(6, '4 Sajtos', 'Pizza négyféle sajttal: mozzarella, parmezán, gorgonzola és cheddar.', NULL, 1800),
-(7, 'Mediterrán', 'Pizza olívaolajjal, szárított paradicsommal, fekete olívával és feta sajttal.', NULL, 1500),
-(8, 'Rántott Gomba', 'Pizza rántott gombával, sajttal, és ízletes pizzaszósszal.', NULL, 1400);
+INSERT INTO `pizzas` (`ID`, `Name`, `Description`, `Price`) VALUES
+(1, 'Margherita', 'Hagyományos pizza friss mozzarella sajttal, bazsalikommal és pizzaszósszal.', 1200),
+(2, 'Pepperoni', 'Pizza gazdag pepperonival, mozzarella sajttal és ízletes pizzaszósszal.', 1500),
+(3, 'Veggie', 'Vegetáriánus pizza gombával, hagymával, kukoricával és mozzarella sajttal.', 1400),
+(4, 'Hawaii', 'Pizza ananásszal, sonkával és mozzarella sajttal, édes-savanyú ízélménnyel.', 1600),
+(5, 'BBQ Chicken', 'Pizza grillezett csirkehússal, BBQ szósszal, vöröshagymával és mozzarella sajttal.', 1700),
+(6, '4 Sajtos', 'Pizza négyféle sajttal: mozzarella, parmezán, gorgonzola és cheddar.', 1800),
+(7, 'Mediterrán', 'Pizza olívaolajjal, szárított paradicsommal, fekete olívával és feta sajttal.', 1500),
+(8, 'Rántott Gomba', 'Pizza rántott gombával, sajttal, és ízletes pizzaszósszal.', 1400);
 
 -- --------------------------------------------------------
 
