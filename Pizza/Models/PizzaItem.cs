@@ -16,7 +16,6 @@ namespace Pizza.Models
         public int ID { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
-        public BitmapImage Img { get; private set; }
         public double Price { get; private set; }
 
         public PizzaItem(MySqlDataReader reader) : base(reader)
@@ -24,7 +23,6 @@ namespace Pizza.Models
             ID = reader.GetInt32("ID");
             Name = reader.GetString("Name");
             Description = reader.GetString("Description");
-            //Img = reader.getb
             Price = reader.GetDouble("Price");
         }
 
