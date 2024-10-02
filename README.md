@@ -21,12 +21,12 @@ Az alkalmazás három rétegből áll:
 
 2. **Adatbázis oladl**:
    - Az adatbázis 6 táblát tartalmaz:
-     - **Felhasználók**: A regisztrált felhasználók adatai.
-     - **Rendelések**: A leadott rendelések.
-     - **Pizzák**: A rendelhető pizzák listája.
-     - **Hozzávalók**: A pizzákhoz tartozó alapanyagok listája.
-     - **Feltétek**: A rendelhető pizzákra tehető különböző feltétek.
-     - **RendelésElemei**: A rendelésekhez tartozó pizzák és azok részletei.
+     - 1 Felhasználók**: A regisztrált felhasználók adatai.
+     - 2 Rendelések**: A leadott rendelések.
+     - 3 Pizzák**: A rendelhető pizzák listája.
+     - 4 Hozzávalók**: A pizzákhoz tartozó alapanyagok listája.
+     - 5 Feltétek**: A rendelhető pizzákra tehető különböző feltétek.
+     - 6 RendelésElemei**: A rendelésekhez tartozó pizzák és azok részletei.
 
 3. **Karbantartói oladl**:
    - A karbantartói oladl lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
