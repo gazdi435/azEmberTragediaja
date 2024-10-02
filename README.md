@@ -12,14 +12,14 @@ Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy 
 ## Rendszer Architektúra
 
 Az alkalmazás három rétegből áll:
-1. **Felhasználói Réteg**:
+1. **Felhasználói oldal**:
    - A felhasználó bejelentkezhet vagy új fiókot hozhat létre.
    - A felhasználó böngészhet a rendelhető pizzák között.
    - A pizzákhoz hozzávalókat láthat, és kiválaszthatja azokat.
    - A felhasználó kosárhoz adhatja a pizzákat és megrendelheti őket.
    - A leadott rendelések bekerülnek az adatbázisba.
 
-2. **Adatbázis Réteg**:
+2. **Adatbázis oladl**:
    - Az adatbázis 6 táblát tartalmaz:
      - **Felhasználók**: A regisztrált felhasználók adatai.
      - **Rendelések**: A leadott rendelések.
@@ -28,8 +28,8 @@ Az alkalmazás három rétegből áll:
      - **Feltétek**: A rendelhető pizzákra tehető különböző feltétek.
      - **RendelésElemei**: A rendelésekhez tartozó pizzák és azok részletei.
 
-3. **Karbantartói Réteg** (Fejlesztés alatt):
-   - A karbantartói réteg lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
+3. **Karbantartói oladl**:
+   - A karbantartói oladl lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
    - A pizzák hozzáadhatók vagy törölhetők az étlapról.
    - A hozzávalók és feltétek módosíthatók.
 
@@ -77,21 +77,16 @@ Az alkalmazás három rétegből áll:
 <img src="/readmeImages/login.png" alt="drawing" width="500"/>
 <img src="/readmeImages/main.png" alt="drawing" width="500"/>
 
-- 1. **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
-- 2. **Itt láthatja a pizza alapanyagait.
-- 3. **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
-- 4. **Kiválaszthatja az egyes pizzák mennyiségét.
+-  **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
+-  **Itt láthatja a pizza alapanyagait.
+-  **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
+-  **Kiválaszthatja az egyes pizzák mennyiségét.
 
 ### Karbantartói Funkciók (Fejlesztés alatt)
 
 - **Pizzák Kezelése**: Pizzák hozzáadása és eltávolítása a rendelhető pizzák listájáról.
 - **Hozzávalók és Feltétek Kezelése**: A pizzákhoz tartozó hozzávalók és feltétek módosítása.
 - **Raktárkészletek Figyelése**: Az adminisztrátorok számára lehetőség nyílik a raktárkészletek figyelemmel követésére.
-
-## Hibakeresés és Hibaelhárítás
-
-- **Adatbázis Kapcsolati Hibák**: Ellenőrizd, hogy a konfigurációs fájlban lévő kapcsolati karakterlánc helyes-e.
-- **Bejelentkezési Hibák**: Győződj meg arról, hogy a felhasználói hitelesítő adatok helyességéről.
 
 ## Fejlesztés és Karbantartás 
 
