@@ -4,10 +4,10 @@
 
 Ez a projekt egy c# pizza rendelési alkalmazás, amelyben a felhasználók egy felhasználói, böngészhetnek a pizzák között, kosárba tehetik őket, majd leadhatják a rendelésüket. Illetve pizzázók követhetik raktáraikat és étlapjukat. A rendszer több rétegre épül: egy felhasználói rétegre, egy adatbázis rétegre, valamint egy karbantartói rétegre, amely jelenleg fejlesztés alatt áll.
 
-## Fejlesztők
-- ### [Majoros Péter](https://github.com/Majoros-Peter "Majka github profilja")
-- ### [Győrfi Marcell](https://github.com/gyorfimarcell "Győrfi Marcell github profilja")
-- ### [Gazdag Zsolt](www.github.com/gazdi435 "Én jómagam nekem számomra részemre")
+## Fejlesztők és munkafelosztás
+- ### [Majoros Péter](https://github.com/Majoros-Peter "Majka github profilja"): az adatbázis és az sql lekérdezések, design
+- ### [Győrfi Marcell](https://github.com/gyorfimarcell "Győrfi Marcell github profilja"): a karbantartói oldal és a rendelés oldal
+- ### [Gazdag Zsolt](www.github.com/gazdi435 "Én jómagam nekem számomra részemre"): bejelentkezés és regisztrációs oldal
 
 ## Rendszer Architektúra
 
