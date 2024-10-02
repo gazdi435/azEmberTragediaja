@@ -21,12 +21,12 @@ Az alkalmazás három rétegből áll:
 
 2. **Adatbázis oldal**:
    - Az adatbázis 6 táblát tartalmaz:
-     - 1 Felhasználók: A regisztrált felhasználók adatai.
-     - 2 Rendelések: A leadott rendelések.
-     - 3 Pizzák: A rendelhető pizzák listája.
-     - 4 Hozzávalók: A pizzákhoz tartozó alapanyagok listája.
-     - 5 Feltétek: A rendelhető pizzákra tehető különböző feltétek.
-     - 6 RendelésElemei: A rendelésekhez tartozó pizzák és azok részletei.
+     - Felhasználók: A regisztrált felhasználók adatai.
+     - Rendelések: A leadott rendelések.
+     - Pizzák: A rendelhető pizzák listája.
+     - Hozzávalók: A pizzákhoz tartozó alapanyagok listája.
+     - Feltétek: A rendelhető pizzákra tehető különböző feltétek.
+     - RendelésElemei: A rendelésekhez tartozó pizzák és azok részletei.
 
 3. **Karbantartói oldal**:
    - A karbantartói oldal lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
@@ -77,10 +77,10 @@ Az alkalmazás három rétegből áll:
 <img src="/readmeImages/login.png" alt="drawing" width="500"/>
 <img src="/readmeImages/main.png" alt="drawing" width="500"/>
 
--  **Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
--  **Itt láthatja a pizza alapanyagait.
--  **Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
--  **Kiválaszthatja az egyes pizzák mennyiségét.
+-  1 Könnyedén kikeresheti a megvásárólni kívánt pizzákat.
+-  2 Itt láthatja a pizza alapanyagait.
+-  3 Kosarából könnyedén eltávolíthat illetve hozzáadhat pizzákat.
+-  4 Kiválaszthatja az egyes pizzák mennyiségét.
 
 ### Karbantartói Funkciók (Fejlesztés alatt)
 
@@ -97,6 +97,5 @@ Az alkalmazás három rétegből áll:
 
 - **Felhasználói Felület Javítása**: További funkciók hozzáadása, például rendelések nyomon követése.
 - **Karbantartói Rendszer Bővítése**: A raktárkezelés és az adminisztrációs funkciók további finomítása és bővítése.
-- 
 
 _Ez a dokumentáció egy részletes áttekintést ad a projektről, annak felépítéséről, valamint telepítési és használati útmutatót nyújt a fejlesztők és felhasználók számára._
