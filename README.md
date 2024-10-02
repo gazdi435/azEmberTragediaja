@@ -19,7 +19,7 @@ Az alkalmazás három rétegből áll:
    - A felhasználó kosárhoz adhatja a pizzákat és megrendelheti őket.
    - A leadott rendelések bekerülnek az adatbázisba.
 
-2. **Adatbázis oladl**:
+2. **Adatbázis oldal**:
    - Az adatbázis 6 táblát tartalmaz:
      - 1 Felhasználók: A regisztrált felhasználók adatai.
      - 2 Rendelések: A leadott rendelések.
@@ -28,8 +28,8 @@ Az alkalmazás három rétegből áll:
      - 5 Feltétek: A rendelhető pizzákra tehető különböző feltétek.
      - 6 RendelésElemei: A rendelésekhez tartozó pizzák és azok részletei.
 
-3. **Karbantartói oladl**:
-   - A karbantartói oladl lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
+3. **Karbantartói oldal**:
+   - A karbantartói oldal lehetőséget biztosít az adminisztrátorok számára a raktárkészletek figyelésére.
    - A pizzák hozzáadhatók vagy törölhetők az étlapról.
    - A hozzávalók és feltétek módosíthatók.
 
